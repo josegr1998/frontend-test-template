@@ -12,10 +12,16 @@ const typographyVariants = cva("", {
       h4: "text-xl font-medium",
       body: "text-base",
       caption: "text-sm text-neutral-500",
+      "ag-regular": "text-base font-normal leading-5 text-primary-dark",
+      "ag-medium": "text-base font-medium leading-4 text-primary-dark",
       "ag-bold":
         "font-bold text-base leading-4 text-neutral-500 tracking-normal",
+      "lg-regular":
+        "text-lg font-normal leading-6 text-primary-dark tracking-wide-04",
       "lg-bold":
         "text-primary-dark font-bold text-lg leading-5 tracking-wide-04",
+      "xl-regular":
+        "text-primary-dark font-normal text-2xl leading-7 tracking-wide-04",
       "xl-bold":
         "text-primary-dark font-bold text-xl leading-6 tracking-wide-04",
       "area-normal":
