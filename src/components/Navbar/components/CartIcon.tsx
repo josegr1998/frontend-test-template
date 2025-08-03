@@ -1,6 +1,6 @@
 "use client";
 
-import { useCartStore } from "@/stores/useCartStore";
+import { useCartStore } from "@/stores/cart/useCartStore";
 import Image from "next/image";
 import Link from "next/link";
 

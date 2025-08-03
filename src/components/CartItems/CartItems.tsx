@@ -1,6 +1,6 @@
 "use client";
 
-import { useCartStore } from "@/stores/useCartStore";
+import { useCartStore } from "@/stores/cart/useCartStore";
 import Image from "next/image";
 import { Typography } from "../Typography/Typography";
 
@@ -12,7 +12,7 @@ export const CartItems = () => {
       {items.map((item) => (
         <div key={item.id} className="border-primary-light border-b px-4 py-5">
           <div className="relative flex items-stretch gap-x-6">
-            <div className="relative h-[156px] w-[256px]">
+            <div className="relative h-[156px] w-[256px] shrink-0">
               <Image
                 src={item.image}
                 alt={item.name}
@@ -20,7 +20,6 @@ export const CartItems = () => {
                 className="object-cover"
               />
             </div>
-
             <div className="flex h-[156px] flex-col justify-between">
               <div>
                 <Typography variant="ag-bold" className="mb-3">

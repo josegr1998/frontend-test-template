@@ -8,21 +8,46 @@ type Props = {
   currentPage: number;
 };
 
-export const usePagination = ({ games, currentPage }: Props) => {
+export const useFilters = ({ games, currentPage }: Props) => {
   const searchParams = useSearchParams();
 
-  const genre = searchParams.get("genre") || "All";
+  const defaultGenre = searchParams.get("genre") || "All";
 
-  const [paginatedGames, setPaginatedGames] = useState(games);
+  const [filteredGames, setFilteredGames] = useState(games);
+  const [selectedGenre, setSelectedGenre] = useState(defaultGenre);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleViewMore = async () => {
+    setIsLoading(true);
     const { games: newGames } = await getGamesCatalog({
       page: currentPage + 1,
-      genre,
+      genre: selectedGenre,
     });
 
-    setPaginatedGames([...paginatedGames, ...newGames]);
+    setFilteredGames([...filteredGames, ...newGames]);
+    setIsLoading(false);
   };
 
-  return { paginatedGames, handleViewMore };
+  const handleGenreChange = async (genre: string) => {
+    setSelectedGenre(genre);
+    setIsLoading(true);
+    const { games: newGames } = await getGamesCatalog({
+      page: 1,
+      genre: selectedGenre,
+    });
+
+    setFilteredGames(newGames);
+
+    const newUrl = `/?genre=${genre}`;
+    window.history.replaceState(null, "", newUrl);
+    setIsLoading(false);
+  };
+
+  return {
+    filteredGames,
+    handleViewMore,
+    handleGenreChange,
+    selectedGenre,
+    isLoading,
+  };
 };

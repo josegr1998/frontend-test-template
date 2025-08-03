@@ -1,31 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
 import { Typography } from "../Typography/Typography";
 import { Select } from "../Select/Select";
 import { cn } from "@/utils/cn";
-import { useRouter, useSearchParams } from "next/navigation";
 
 const ALL_GAMES_FILTER = "All";
 
 type Props = {
   availableFilters: string[];
   className?: string;
+  selectedGenre: string;
+  handleChange: (genre: string) => void;
 };
 
-export const Filter = ({ availableFilters, className }: Props) => {
-  const searchParams = useSearchParams();
-  const defaultGenre = searchParams.get("genre") || ALL_GAMES_FILTER;
-
+export const Filter = ({
+  availableFilters,
+  className,
+  selectedGenre,
+  handleChange,
+}: Props) => {
   const filters = [ALL_GAMES_FILTER, ...availableFilters];
-
-  const [genre, setGenre] = useState(defaultGenre);
-  const router = useRouter();
-
-  const handleChange = (value: string) => {
-    setGenre(value);
-    router.push(`/?genre=${value}`);
-  };
 
   return (
     <div className={cn("flex items-center gap-x-6", className)}>
@@ -39,7 +33,7 @@ export const Filter = ({ availableFilters, className }: Props) => {
           label: filter,
           value: filter,
         }))}
-        value={genre}
+        value={selectedGenre}
         onChange={handleChange}
         placeholder="Select a genre"
       />

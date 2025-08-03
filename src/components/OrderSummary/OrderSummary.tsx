@@ -1,7 +1,7 @@
 "use client";
 
 import { Typography } from "../Typography/Typography";
-import { useCartStore } from "@/stores/useCartStore";
+import { useCartStore } from "@/stores/cart/useCartStore";
 
 export const OrderSummary = () => {
   const { items, numberOfItems, totalPrice } = useCartStore();
@@ -16,7 +16,10 @@ export const OrderSummary = () => {
 
       <div>
         {items.map((item) => (
-          <div className="last:border-primary-light flex justify-between gap-y-3 last:border-b last:pb-6">
+          <div
+            className="last:border-primary-light flex justify-between gap-y-3 last:border-b last:pb-6"
+            key={item.id}
+          >
             <Typography variant="lg-regular">{item.name}</Typography>
             <Typography variant="lg-regular">${item.price}</Typography>
           </div>

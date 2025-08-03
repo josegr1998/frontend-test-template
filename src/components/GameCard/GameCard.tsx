@@ -3,14 +3,16 @@ import { Button } from "../Button/Button";
 import Image from "next/image";
 import React from "react";
 import { Typography } from "../Typography/Typography";
-import { useCartStore } from "@/stores/useCartStore";
+import { useCartStore } from "@/stores/cart/useCartStore";
 
 type Props = {
   game: Game;
 };
 
 export const GameCard = ({ game }: Props) => {
-  const { addItem } = useCartStore();
+  const { items, removeItem, addItem } = useCartStore();
+
+  const isAddedToCart = items.some(({ id }) => id === game.id);
 
   return (
     <div className="border-0.5 border-primary-light rounded-2xl p-6">
@@ -34,9 +36,15 @@ export const GameCard = ({ game }: Props) => {
           {game.price}
         </Typography>
       </div>
-      <Button className="w-full" onClick={() => addItem(game)}>
-        ADD TO CART
-      </Button>
+      {isAddedToCart ? (
+        <Button className="w-full" onClick={() => removeItem(game.id)}>
+          REMOVE FROM CART
+        </Button>
+      ) : (
+        <Button className="w-full" onClick={() => addItem(game)}>
+          ADD TO CART
+        </Button>
+      )}
     </div>
   );
 };
