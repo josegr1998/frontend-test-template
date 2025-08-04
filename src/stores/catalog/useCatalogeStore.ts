@@ -24,7 +24,7 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
   fetchGames: async (genre: string) => {
     set({ isLoading: true, error: null });
     try {
-      const catalog = await getGamesCatalog({ genre, cache: "force-cache" });
+      const catalog = await getGamesCatalog({ genre, cache: "no-store" });
       set({ catalog });
     } catch (err) {
       set({ error: err });

@@ -7,6 +7,7 @@ import { ViewMore } from "@/components/ViewMore/ViewMore";
 import { useFilters } from "./GamesListingPage.hooks";
 import { Loader } from "../Loader/Loader";
 import { GameCatalog } from "@/types/server/catalog";
+import { Error } from "../Error/Error";
 
 type Props = {
   initialCatalog: GameCatalog;
@@ -16,11 +17,19 @@ export const GamesListingPage = ({ initialCatalog }: Props) => {
   const {
     gamesCatalog,
     selectedGenre,
-    handleViewMore,
-    handleGenreChange,
     isLoading,
     isLoadingNextPage,
+    error,
+    handleViewMore,
+    handleGenreChange,
+    handleResetErrorBoundary,
   } = useFilters({ initialCatalog });
+
+  if (error) {
+    return (
+      <Error error={error} resetErrorBoundary={handleResetErrorBoundary} />
+    );
+  }
 
   return (
     <div className="mx-auto max-w-7xl">
