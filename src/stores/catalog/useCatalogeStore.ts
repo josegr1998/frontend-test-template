@@ -8,18 +8,15 @@ type CatalogStore = {
   catalog: GameCatalog | null;
   isLoading: boolean;
   isLoadingNextPage: boolean;
-  selectedGenre: string;
   //TODO: Add error handling
   error: unknown;
   fetchGames: (genre: string) => Promise<void>;
   fetchNextPage: (genre: string) => Promise<void>;
   setCatalog: (catalog: GameCatalog) => void;
-  setSelectedGenre: (genre: string) => void;
 };
 
 export const useCatalogStore = create<CatalogStore>((set, get) => ({
   catalog: null,
-  selectedGenre: DEFAULT_SELECTED_GENRE,
   currentPage: 1,
   isLoading: false,
   isLoadingNextPage: false,
@@ -61,6 +58,5 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
     }
   },
 
-  setSelectedGenre: (genre: string) => set({ selectedGenre: genre }),
   setCatalog: (catalog) => set({ catalog }),
 }));

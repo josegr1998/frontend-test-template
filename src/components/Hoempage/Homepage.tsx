@@ -10,7 +10,7 @@ export const Homepage = async ({ genre }: Props) => {
 
   return (
     <div className="mx-auto w-full max-w-7xl">
-      <GamesListingPage initialCatalog={initialCatalog} key={genre} />
+      <GamesListingPage initialCatalog={initialCatalog} />
     </div>
   );
 };

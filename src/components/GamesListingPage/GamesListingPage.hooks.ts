@@ -1,5 +1,7 @@
 import { useCatalogStore } from "@/stores/catalog/useCatalogeStore";
+import { DEFAULT_SELECTED_GENRE } from "@/consts";
 import { GameCatalog } from "@/types/server/catalog";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
 type Props = {
@@ -7,14 +9,16 @@ type Props = {
 };
 
 export const useFilters = ({ initialCatalog }: Props) => {
+  const searchParams = useSearchParams();
+
+  const selectedGenre = searchParams.get("genre") || DEFAULT_SELECTED_GENRE;
+
   const {
     isLoading,
     catalog,
-    selectedGenre,
     isLoadingNextPage,
     fetchGames,
     fetchNextPage,
-    setSelectedGenre,
     setCatalog,
   } = useCatalogStore();
 
@@ -27,7 +31,6 @@ export const useFilters = ({ initialCatalog }: Props) => {
   };
 
   const handleGenreChange = async (genre: string) => {
-    setSelectedGenre(genre);
     fetchGames(genre);
 
     const newUrl = `/?genre=${genre}`;
@@ -36,9 +39,9 @@ export const useFilters = ({ initialCatalog }: Props) => {
 
   return {
     gamesCatalog: catalog,
+    selectedGenre,
     handleViewMore,
     handleGenreChange,
-    selectedGenre,
     isLoading,
     isLoadingNextPage,
   };

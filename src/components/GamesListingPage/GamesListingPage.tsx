@@ -5,7 +5,6 @@ import { GamesList } from "@/components/GamesList/GamesList";
 import { Typography } from "@/components/Typography/Typography";
 import { ViewMore } from "@/components/ViewMore/ViewMore";
 import { useFilters } from "./GamesListingPage.hooks";
-import { Game } from "@/types/server/game";
 import { Loader } from "../Loader/Loader";
 import { GameCatalog } from "@/types/server/catalog";
 
@@ -16,9 +15,9 @@ type Props = {
 export const GamesListingPage = ({ initialCatalog }: Props) => {
   const {
     gamesCatalog,
+    selectedGenre,
     handleViewMore,
     handleGenreChange,
-    selectedGenre,
     isLoading,
     isLoadingNextPage,
   } = useFilters({ initialCatalog });

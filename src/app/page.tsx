@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <main className="min-h-screen px-6 lg:px-32">
       <Suspense fallback={<Loader className="h-screen" />}>
-        <Homepage genre={genre} key={genre} />
+        <Homepage genre={genre} />
       </Suspense>
     </main>
   );
