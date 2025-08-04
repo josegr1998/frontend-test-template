@@ -7,15 +7,13 @@ import { ViewMore } from "@/components/ViewMore/ViewMore";
 import { useFilters } from "./GamesListingPage.hooks";
 import { Game } from "@/types/server/game";
 import { Loader } from "../Loader/Loader";
+import { GameCatalog } from "@/types/server/catalog";
 
 type Props = {
-  availableFilters: string[];
-  games: Game[];
-  totalPages: number;
-  currentPage: number;
+  initialCatalog: GameCatalog;
 };
 
-export const GamesListingPage = (props: Props) => {
+export const GamesListingPage = ({ initialCatalog }: Props) => {
   const {
     gamesCatalog,
     handleViewMore,
@@ -23,7 +21,7 @@ export const GamesListingPage = (props: Props) => {
     selectedGenre,
     isLoading,
     isLoadingNextPage,
-  } = useFilters({ gameCatalog: { ...props } });
+  } = useFilters({ initialCatalog });
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -32,7 +30,9 @@ export const GamesListingPage = (props: Props) => {
       </Typography>
       <div className="flex md:justify-end">
         <Filter
-          availableFilters={gamesCatalog.availableFilters}
+          availableFilters={
+            gamesCatalog?.availableFilters || initialCatalog.availableFilters
+          }
           className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
@@ -45,14 +45,14 @@ export const GamesListingPage = (props: Props) => {
       ) : (
         <div className="my-8 lg:my-12">
           <GamesList
-            games={gamesCatalog.games}
+            games={gamesCatalog?.games || initialCatalog.games}
             isLoadingNextPage={isLoadingNextPage}
           />
         </div>
       )}
       <ViewMore
-        totalPages={gamesCatalog.totalPages}
-        currentPage={gamesCatalog.currentPage}
+        totalPages={gamesCatalog?.totalPages || initialCatalog.totalPages}
+        currentPage={gamesCatalog?.currentPage || initialCatalog.currentPage}
         onClick={handleViewMore}
       />
     </div>

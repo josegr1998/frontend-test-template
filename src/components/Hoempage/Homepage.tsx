@@ -6,24 +6,11 @@ type Props = {
 };
 
 export const Homepage = async ({ genre }: Props) => {
-  const {
-    availableFilters,
-    currentPage,
-    games: gamesByGenre,
-    totalPages,
-  } = await getGamesCatalog({ genre, cache: "force-cache" });
-
-  //TODO: Check if the key hack can be removed
+  const initialCatalog = await getGamesCatalog({ genre, cache: "force-cache" });
 
   return (
     <div className="mx-auto w-full max-w-7xl">
-      <GamesListingPage
-        availableFilters={availableFilters}
-        games={gamesByGenre}
-        totalPages={totalPages}
-        currentPage={currentPage}
-        key={genre}
-      />
+      <GamesListingPage initialCatalog={initialCatalog} key={genre} />
     </div>
   );
 };

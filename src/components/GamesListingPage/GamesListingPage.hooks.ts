@@ -1,53 +1,41 @@
-import { getGamesCatalog } from "@/services/catalog";
+import { useCatalogStore } from "@/stores/catalog/useCatalogeStore";
 import { GameCatalog } from "@/types/server/catalog";
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect } from "react";
 
 type Props = {
-  gameCatalog: GameCatalog;
+  initialCatalog: GameCatalog;
 };
 
-export const useFilters = ({ gameCatalog }: Props) => {
-  const searchParams = useSearchParams();
+export const useFilters = ({ initialCatalog }: Props) => {
+  const {
+    isLoading,
+    catalog,
+    selectedGenre,
+    isLoadingNextPage,
+    fetchGames,
+    fetchNextPage,
+    setSelectedGenre,
+    setCatalog,
+  } = useCatalogStore();
 
-  const defaultGenre = searchParams.get("genre") || "All";
-
-  const [gamesCatalog, setGamesCatalog] = useState<GameCatalog>(gameCatalog);
-  const [selectedGenre, setSelectedGenre] = useState(defaultGenre);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingNextPage, setIsLoadingNextPage] = useState(false);
+  useEffect(() => {
+    setCatalog(initialCatalog);
+  }, [initialCatalog, setCatalog]);
 
   const handleViewMore = async () => {
-    setIsLoadingNextPage(true);
-    const newGamesCatalog = await getGamesCatalog({
-      page: gamesCatalog.currentPage + 1,
-      genre: selectedGenre,
-    });
-
-    setGamesCatalog({
-      ...gamesCatalog,
-      games: [...gamesCatalog.games, ...newGamesCatalog.games],
-    });
-    setIsLoadingNextPage(false);
+    fetchNextPage(selectedGenre);
   };
 
   const handleGenreChange = async (genre: string) => {
     setSelectedGenre(genre);
-    setIsLoading(true);
-    const newGamesCatalog = await getGamesCatalog({
-      page: 1,
-      genre,
-    });
-
-    setGamesCatalog(newGamesCatalog);
+    fetchGames(genre);
 
     const newUrl = `/?genre=${genre}`;
     window.history.replaceState(null, "", newUrl);
-    setIsLoading(false);
   };
 
   return {
-    gamesCatalog,
+    gamesCatalog: catalog,
     handleViewMore,
     handleGenreChange,
     selectedGenre,
