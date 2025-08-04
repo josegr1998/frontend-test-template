@@ -11,23 +11,25 @@ const typographyVariants = cva("", {
       h3: "text-2xl font-semibold",
       h4: "text-xl font-medium",
       body: "text-base",
-      caption: "text-sm text-neutral-500",
-      "ag-regular": "text-base font-normal leading-5 text-primary-dark",
-      "ag-medium": "text-base font-medium leading-4 text-primary-dark",
+      caption: "text-sm text-[var(--color-secondary)]",
+      "ag-regular":
+        "text-base font-normal leading-5 text-[var(--color-primary-dark)]",
+        "ag-medium":
+        "text-base font-medium leading-4 text-[var(--color-primary-dark)]",
       "ag-bold":
-        "font-bold text-base leading-4 text-neutral-500 tracking-normal",
+        "font-bold text-base leading-4 text-[var(--color-secondary)] tracking-normal",
       "lg-regular":
-        "text-lg font-normal leading-6 text-primary-dark tracking-wide-04",
+        "text-lg font-normal leading-6 text-[var(--color-primary-dark)] tracking-[var(--letter-wide-04)]",
       "lg-bold":
-        "text-primary-dark font-bold text-lg leading-5 tracking-wide-04",
+        "text-[var(--color-primary-dark)] font-bold text-lg leading-5 tracking-[var(--letter-wide-04)]",
       "xl-regular":
-        "text-primary-dark font-normal text-2xl leading-7 tracking-wide-04",
+        "text-[var(--color-primary-dark)] font-normal text-2xl leading-7 tracking-[var(--letter-wide-04)]",
       "xl-bold":
-        "text-primary-dark font-bold text-xl leading-6 tracking-wide-04",
+        "text-[var(--color-primary-dark)] font-bold text-xl leading-6 tracking-[var(--letter-wide-04)]",
       "area-normal":
-        "text-primary font-bold text-2xl leading-6 tracking-wide-04",
+          "text-[var(--color-primary)] font-bold text-2xl leading-6 tracking-[var(--letter-wide-04)]",
       "2xl-bold":
-        "text-primary-dark font-bold text-2xl leading-7 lg:text-4xl lg:leading-10 tracking-wide-04",
+        "text-[var(--color-primary-dark)] font-bold text-2xl leading-7 lg:text-4xl lg:leading-10 tracking-[var(--letter-wide-04)]",
     },
   },
   defaultVariants: {

@@ -9,6 +9,9 @@ type Props = {
   onClick: () => void;
 };
 export const ViewMore = ({ totalPages, currentPage, onClick }: Props) => {
+  console.log("totalPages", totalPages);
+  console.log("currentPage", currentPage);
+
   if (currentPage >= totalPages) return null;
 
   return (

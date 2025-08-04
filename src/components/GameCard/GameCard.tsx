@@ -15,7 +15,7 @@ export const GameCard = ({ game }: Props) => {
   const isAddedToCart = items.some(({ id }) => id === game.id);
 
   return (
-    <div className="border-0.5 border-primary-light rounded-2xl p-6">
+    <div className="border-[0.5px] border-[var(--color-primary-light)] rounded-2xl p-6 ">
       {/* TODO: Check if this is correct, check size of the button */}
       <Image
         src={game.image}

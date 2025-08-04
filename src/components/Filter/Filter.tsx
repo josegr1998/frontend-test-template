@@ -29,7 +29,7 @@ export const Filter = ({
       )}
     >
       <Typography variant="xl-bold" className="">
-        <span className="border-primary-dark h-[22px] border-r pr-6">
+        <span className="h-[22px] border-r border-[var(--color-primary-dark)] pr-6">
           Genre
         </span>
       </Typography>

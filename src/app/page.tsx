@@ -3,13 +3,13 @@ import { Loader } from "@/components/Loader/Loader";
 import { Suspense } from "react";
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     genre?: string;
-  };
+  }>;
 };
 
 export default async function Home({ searchParams }: Props) {
-  const { genre = "All" } = searchParams;
+  const { genre = "All" } = await searchParams;
 
   return (
     <main className="min-h-screen px-6 lg:px-32">
