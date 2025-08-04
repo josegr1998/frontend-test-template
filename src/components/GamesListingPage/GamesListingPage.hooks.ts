@@ -33,7 +33,7 @@ export const useFilters = ({ games, currentPage }: Props) => {
     setIsLoading(true);
     const { games: newGames } = await getGamesCatalog({
       page: 1,
-      genre: selectedGenre,
+      genre,
     });
 
     setFilteredGames(newGames);

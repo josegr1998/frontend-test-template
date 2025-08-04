@@ -22,9 +22,14 @@ export const Filter = ({
   const filters = [ALL_GAMES_FILTER, ...availableFilters];
 
   return (
-    <div className={cn("flex items-center gap-x-6", className)}>
+    <div
+      className={cn(
+        "flex w-full items-center justify-between gap-x-6 md:w-auto md:justify-end",
+        className,
+      )}
+    >
       <Typography variant="xl-bold" className="">
-        <span className="border-primary-dark h-[22px] border-r px-6">
+        <span className="border-primary-dark h-[22px] border-r pr-6">
           Genre
         </span>
       </Typography>
@@ -36,6 +41,7 @@ export const Filter = ({
         value={selectedGenre}
         onChange={handleChange}
         placeholder="Select a genre"
+        className="flex-1"
       />
     </div>
   );

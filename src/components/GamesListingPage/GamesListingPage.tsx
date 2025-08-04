@@ -33,14 +33,14 @@ export const GamesListingPage = ({
   });
 
   return (
-    <div className="mx-auto max-w-7xl ">
-      <Typography variant="2xl-bold" as="h1" className="my-12">
+    <div className="mx-auto max-w-7xl">
+      <Typography variant="2xl-bold" as="h1" className="my-8 lg:my-12">
         Top Sellers
       </Typography>
-      <div className="flex justify-end">
+      <div className="flex md:justify-end">
         <Filter
           availableFilters={availableFilters}
-          className="mb-12"
+          className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
         />
@@ -51,7 +51,7 @@ export const GamesListingPage = ({
           <Loader className="h-full" />
         </div>
       ) : (
-        <div className="my-12 mr-11">
+        <div className="my-8 lg:my-12 lg:mr-11">
           <GamesList games={filteredGames} />
         </div>
       )}

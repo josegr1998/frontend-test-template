@@ -33,7 +33,7 @@ export const GameCard = ({ game }: Props) => {
           {game.name}
         </Typography>
         <Typography variant="xl-bold" as="p">
-          {game.price}
+          ${game.price}
         </Typography>
       </div>
       {isAddedToCart ? (

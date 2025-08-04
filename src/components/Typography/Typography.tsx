@@ -27,7 +27,7 @@ const typographyVariants = cva("", {
       "area-normal":
         "text-primary font-bold text-2xl leading-6 tracking-wide-04",
       "2xl-bold":
-        "text-primary-dark font-bold text-4xl leading-10 tracking-wide-04",
+        "text-primary-dark font-bold text-2xl leading-7 lg:text-4xl lg:leading-10 tracking-wide-04",
     },
   },
   defaultVariants: {

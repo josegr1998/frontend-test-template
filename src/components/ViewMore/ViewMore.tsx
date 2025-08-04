@@ -12,7 +12,11 @@ export const ViewMore = ({ totalPages, currentPage, onClick }: Props) => {
   if (currentPage >= totalPages) return null;
 
   return (
-    <Button variant="secondary" className="mb-12" onClick={onClick}>
+    <Button
+      variant="secondary"
+      className="mb-12 w-full md:w-auto"
+      onClick={onClick}
+    >
       SEE MORE
     </Button>
   );
