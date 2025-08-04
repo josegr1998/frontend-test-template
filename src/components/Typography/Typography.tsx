@@ -14,7 +14,7 @@ const typographyVariants = cva("", {
       caption: "text-sm text-[var(--color-secondary)]",
       "ag-regular":
         "text-base font-normal leading-5 text-[var(--color-primary-dark)]",
-        "ag-medium":
+      "ag-medium":
         "text-base font-medium leading-4 text-[var(--color-primary-dark)]",
       "ag-bold":
         "font-bold text-base leading-4 text-[var(--color-secondary)] tracking-normal",
@@ -27,7 +27,7 @@ const typographyVariants = cva("", {
       "xl-bold":
         "text-[var(--color-primary-dark)] font-bold text-xl leading-6 tracking-[var(--letter-wide-04)]",
       "area-normal":
-          "text-[var(--color-primary)] font-bold text-2xl leading-6 tracking-[var(--letter-wide-04)]",
+        "text-[var(--color-primary)] font-bold text-2xl leading-6 tracking-[var(--letter-wide-04)]",
       "2xl-bold":
         "text-[var(--color-primary-dark)] font-bold text-2xl leading-7 lg:text-4xl lg:leading-10 tracking-[var(--letter-wide-04)]",
     },

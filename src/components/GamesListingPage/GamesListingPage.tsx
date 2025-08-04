@@ -15,22 +15,15 @@ type Props = {
   currentPage: number;
 };
 
-export const GamesListingPage = ({
-  availableFilters,
-  games,
-  totalPages,
-  currentPage,
-}: Props) => {
+export const GamesListingPage = (props: Props) => {
   const {
-    filteredGames,
+    gamesCatalog,
     handleViewMore,
     handleGenreChange,
     selectedGenre,
     isLoading,
-  } = useFilters({
-    games,
-    currentPage,
-  });
+    isLoadingNextPage,
+  } = useFilters({ gameCatalog: { ...props } });
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -39,25 +32,27 @@ export const GamesListingPage = ({
       </Typography>
       <div className="flex md:justify-end">
         <Filter
-          availableFilters={availableFilters}
+          availableFilters={gamesCatalog.availableFilters}
           className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
         />
       </div>
-      {/* TODO:Report Figma design error */}
       {isLoading ? (
         <div className="flex min-h-[439px] w-[80rem] items-center justify-center">
           <Loader className="h-full" />
         </div>
       ) : (
-        <div className="my-8 lg:my-12 lg:mr-11">
-          <GamesList games={filteredGames} />
+        <div className="my-8 lg:my-12">
+          <GamesList
+            games={gamesCatalog.games}
+            isLoadingNextPage={isLoadingNextPage}
+          />
         </div>
       )}
       <ViewMore
-        totalPages={totalPages}
-        currentPage={currentPage}
+        totalPages={gamesCatalog.totalPages}
+        currentPage={gamesCatalog.currentPage}
         onClick={handleViewMore}
       />
     </div>

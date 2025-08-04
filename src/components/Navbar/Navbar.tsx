@@ -6,7 +6,7 @@ import { CartIcon } from "./components/CartIcon";
 //TODO: Rename to header
 export const Navbar = () => {
   return (
-    <div className="bg-[var(--color-surface-secondary)] flex items-center justify-center px-6 py-5 lg:px-0">
+    <div className="flex items-center justify-center bg-[var(--color-surface-secondary)] px-6 py-5 lg:px-0">
       <nav className="flex w-full max-w-7xl items-center justify-between">
         <Link href="/">
           <Typography variant="area-normal">GamerShop</Typography>

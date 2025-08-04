@@ -1,42 +1,45 @@
 import { getGamesCatalog } from "@/services/catalog";
-import { Game } from "@/types/server/game";
+import { GameCatalog } from "@/types/server/catalog";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 type Props = {
-  games: Game[];
-  currentPage: number;
+  gameCatalog: GameCatalog;
 };
 
-export const useFilters = ({ games, currentPage }: Props) => {
+export const useFilters = ({ gameCatalog }: Props) => {
   const searchParams = useSearchParams();
 
   const defaultGenre = searchParams.get("genre") || "All";
 
-  const [filteredGames, setFilteredGames] = useState(games);
+  const [gamesCatalog, setGamesCatalog] = useState<GameCatalog>(gameCatalog);
   const [selectedGenre, setSelectedGenre] = useState(defaultGenre);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingNextPage, setIsLoadingNextPage] = useState(false);
 
   const handleViewMore = async () => {
-    setIsLoading(true);
-    const { games: newGames } = await getGamesCatalog({
-      page: currentPage + 1,
+    setIsLoadingNextPage(true);
+    const newGamesCatalog = await getGamesCatalog({
+      page: gamesCatalog.currentPage + 1,
       genre: selectedGenre,
     });
 
-    setFilteredGames([...filteredGames, ...newGames]);
-    setIsLoading(false);
+    setGamesCatalog({
+      ...gamesCatalog,
+      games: [...gamesCatalog.games, ...newGamesCatalog.games],
+    });
+    setIsLoadingNextPage(false);
   };
 
   const handleGenreChange = async (genre: string) => {
     setSelectedGenre(genre);
     setIsLoading(true);
-    const { games: newGames } = await getGamesCatalog({
+    const newGamesCatalog = await getGamesCatalog({
       page: 1,
       genre,
     });
 
-    setFilteredGames(newGames);
+    setGamesCatalog(newGamesCatalog);
 
     const newUrl = `/?genre=${genre}`;
     window.history.replaceState(null, "", newUrl);
@@ -44,10 +47,11 @@ export const useFilters = ({ games, currentPage }: Props) => {
   };
 
   return {
-    filteredGames,
+    gamesCatalog,
     handleViewMore,
     handleGenreChange,
     selectedGenre,
     isLoading,
+    isLoadingNextPage,
   };
 };

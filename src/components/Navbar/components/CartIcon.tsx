@@ -10,7 +10,7 @@ export const CartIcon = () => {
   return (
     <Link href="/cart" className="relative">
       <Image src="cart-icon.svg" alt="GamerShop" width={24} height={24} />
-      <span className="bg-[var(--color-primary-light)] absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full text-xs text-white">
+      <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-[var(--color-primary-light)] text-xs text-white">
         {numberOfItems}
       </span>
     </Link>

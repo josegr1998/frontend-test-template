@@ -6,7 +6,7 @@ import { useCartStore } from "@/stores/cart/useCartStore";
 export const OrderSummary = () => {
   const { items, numberOfItems, totalPrice } = useCartStore();
   return (
-    <div className="border-[var(--color-primary-light)] rounded-lg border px-6 py-8">
+    <div className="rounded-lg border border-[var(--color-primary-light)] px-6 py-8">
       <Typography variant="xl-bold" className="mb-3">
         Order Summary
       </Typography>
@@ -17,7 +17,7 @@ export const OrderSummary = () => {
       <div>
         {items.map((item) => (
           <div
-            className="last:border-[var(--color-primary-light)] flex justify-between gap-y-3 last:border-b last:pb-6"
+            className="flex justify-between gap-y-3 last:border-b last:border-[var(--color-primary-light)] last:pb-6"
             key={item.id}
           >
             <Typography variant="lg-regular">{item.name}</Typography>

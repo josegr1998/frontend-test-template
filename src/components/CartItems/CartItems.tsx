@@ -10,8 +10,11 @@ export const CartItems = () => {
   return (
     <div>
       {items.map((item) => (
-        <div key={item.id} className="border-[var(--color-primary-light)] border-b px-4 py-5">
-          <div className="relative flex items-stretch gap-x-6">
+        <div
+          key={item.id}
+          className="border-b border-[var(--color-primary-light)] px-4 py-5 "
+        >
+          <div className="relative items-stretch gap-x-6 lg:flex">
             <div className="relative h-[156px] w-[256px] shrink-0">
               <Image
                 src={item.image}

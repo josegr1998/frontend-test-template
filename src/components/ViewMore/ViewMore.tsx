@@ -9,15 +9,13 @@ type Props = {
   onClick: () => void;
 };
 export const ViewMore = ({ totalPages, currentPage, onClick }: Props) => {
-  console.log("totalPages", totalPages);
-  console.log("currentPage", currentPage);
-
   if (currentPage >= totalPages) return null;
 
   return (
     <Button
       variant="secondary"
       className="mb-12 w-full md:w-auto"
+      type="button"
       onClick={onClick}
     >
       SEE MORE

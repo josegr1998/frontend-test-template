@@ -11,7 +11,7 @@ export const Homepage = async ({ genre }: Props) => {
     currentPage,
     games: gamesByGenre,
     totalPages,
-  } = await getGamesCatalog({ genre });
+  } = await getGamesCatalog({ genre, cache: "force-cache" });
 
   //TODO: Check if the key hack can be removed
 

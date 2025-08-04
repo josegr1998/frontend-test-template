@@ -10,7 +10,7 @@ export const Loader = ({ className }: Props) => {
       <div role="status">
         <svg
           aria-hidden="true"
-          className="h-24 w-24 animate-spin text-[var(--color-primary-light)] fill-[var(--color-primary-dark)]"
+          className="h-24 w-24 animate-spin fill-[var(--color-primary-dark)] text-[var(--color-primary-light)]"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
