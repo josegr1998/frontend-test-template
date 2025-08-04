@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const Homepage = async ({ genre }: Props) => {
-  const initialCatalog = await getGamesCatalog({ genre, cache: "no-store" });
+  const initialCatalog = await getGamesCatalog({ genre, cache: "force-cache" });
 
   return (
     <div className="mx-auto w-full max-w-7xl">

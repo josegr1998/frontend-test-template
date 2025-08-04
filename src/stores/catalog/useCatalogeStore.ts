@@ -2,8 +2,6 @@ import { getGamesCatalog } from "@/services/catalog";
 import { GameCatalog } from "@/types/server/catalog";
 import { create } from "zustand";
 
-const DEFAULT_SELECTED_GENRE = "All";
-
 type CatalogStore = {
   catalog: GameCatalog | null;
   isLoading: boolean;
@@ -24,7 +22,7 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
   fetchGames: async (genre: string) => {
     set({ isLoading: true, error: null });
     try {
-      const catalog = await getGamesCatalog({ genre, cache: "no-store" });
+      const catalog = await getGamesCatalog({ genre, cache: "force-cache" });
       set({ catalog });
     } catch (err) {
       set({ error: err });
