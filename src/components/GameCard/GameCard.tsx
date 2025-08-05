@@ -5,6 +5,11 @@ import React from "react";
 import { Typography } from "../Typography/Typography";
 import { useCartStore } from "@/stores/cart/useCartStore";
 import { NewBadge } from "../NewBadge/NewBadge";
+import {
+  MESSAGE_ADDED_TO_CART,
+  MESSAGE_REMOVED_FROM_CART,
+  toastSuccess,
+} from "@/utils/toast";
 
 type Props = {
   game: Game;
@@ -14,6 +19,16 @@ export const GameCard = ({ game }: Props) => {
   const { items, removeItem, addItem } = useCartStore();
 
   const isAddedToCart = items.some(({ id }) => id === game.id);
+
+  const handleAddToCart = () => {
+    addItem(game);
+    toastSuccess({ message: MESSAGE_ADDED_TO_CART });
+  };
+
+  const handleRemoveFromCart = () => {
+    removeItem(game.id);
+    toastSuccess({ message: MESSAGE_REMOVED_FROM_CART });
+  };
 
   return (
     <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 ">
@@ -42,11 +57,11 @@ export const GameCard = ({ game }: Props) => {
         </Typography>
       </div>
       {isAddedToCart ? (
-        <Button className="w-full" onClick={() => removeItem(game.id)}>
+        <Button className="w-full" onClick={handleRemoveFromCart}>
           REMOVE FROM CART
         </Button>
       ) : (
-        <Button className="w-full" onClick={() => addItem(game)}>
+        <Button className="w-full" onClick={handleAddToCart}>
           ADD TO CART
         </Button>
       )}

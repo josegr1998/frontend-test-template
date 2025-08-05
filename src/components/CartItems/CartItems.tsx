@@ -4,9 +4,23 @@ import { useCartStore } from "@/stores/cart/useCartStore";
 import Image from "next/image";
 import { Typography } from "../Typography/Typography";
 import { NewBadge } from "../NewBadge/NewBadge";
+import { MESSAGE_REMOVED_FROM_CART, toastSuccess } from "@/utils/toast";
 
 export const CartItems = () => {
   const { items, removeItem } = useCartStore();
+
+  const handleRemoveItem = (itemId: string) => {
+    removeItem(itemId);
+    toastSuccess({ message: MESSAGE_REMOVED_FROM_CART });
+  };
+
+  if (!items.length) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        <Typography variant="lg-bold">No items in your cart</Typography>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -47,7 +61,7 @@ export const CartItems = () => {
               width={12}
               height={12}
               className="absolute right-0 top-0 cursor-pointer"
-              onClick={() => removeItem(item.id)}
+              onClick={() => handleRemoveItem(item.id)}
             />
           </div>
         </div>
