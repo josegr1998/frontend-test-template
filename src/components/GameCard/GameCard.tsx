@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { Typography } from "../Typography/Typography";
 import { useCartStore } from "@/stores/cart/useCartStore";
+import { NewBadge } from "../NewBadge/NewBadge";
 
 type Props = {
   game: Game;
@@ -17,14 +18,18 @@ export const GameCard = ({ game }: Props) => {
   return (
     <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 ">
       {/* TODO: Check if this is correct, check size of the button */}
-      <Image
-        src={game.image}
-        alt={game.name}
-        width={0}
-        height={0}
-        sizes="100vw"
-        className="h-60 w-full rounded-t-2xl object-cover"
-      />
+      <div className="relative">
+        <Image
+          src={game.image}
+          alt={game.name}
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="h-60 w-full rounded-t-2xl object-cover"
+        />
+        <NewBadge isNew={game.isNew} />
+      </div>
+
       <Typography variant="ag-bold" as="h3" className="mt-5">
         {game.genre.toUpperCase()}
       </Typography>

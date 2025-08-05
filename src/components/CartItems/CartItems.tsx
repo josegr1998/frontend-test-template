@@ -3,6 +3,7 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
 import Image from "next/image";
 import { Typography } from "../Typography/Typography";
+import { NewBadge } from "../NewBadge/NewBadge";
 
 export const CartItems = () => {
   const { items, removeItem } = useCartStore();
@@ -22,6 +23,7 @@ export const CartItems = () => {
                 fill
                 className="object-cover"
               />
+              <NewBadge isNew={item.isNew} />
             </div>
             <div className="flex h-[156px] flex-col justify-between">
               <div>
