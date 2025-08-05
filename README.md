@@ -5,3 +5,7 @@ Welcome to the Frontend Technical Test! This test is designed to assess your kno
 The detailed instructions and requirements for this test are defined in the [`CHALLENGE.md`](/CHALLENGE.md) file. Please read it carefully before you start.
 
 Good luck!
+
+//Implement custom solution for rendering the toast
+//Add Unit testing
+// Fix navbar at top for mobile

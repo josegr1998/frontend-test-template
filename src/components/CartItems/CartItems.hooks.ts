@@ -1,13 +1,18 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
-import { MESSAGE_REMOVED_FROM_CART } from "@/utils/toast";
-import { toastSuccess } from "@/utils/toast";
+import { MESSAGE_REMOVED_FROM_CART } from "@/consts";
+import { useToastStore } from "@/stores/toast/toastStore";
 
 export const useCartItems = () => {
   const { items, removeItem } = useCartStore();
+  const { showToast } = useToastStore();
 
   const handleRemoveItem = (itemId: string) => {
     removeItem(itemId);
-    toastSuccess({ message: MESSAGE_REMOVED_FROM_CART });
+    showToast({
+      type: "success",
+      title: MESSAGE_REMOVED_FROM_CART,
+      message: itemId,
+    });
   };
 
   return { items, handleRemoveItem };

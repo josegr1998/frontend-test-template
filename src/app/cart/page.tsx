@@ -6,7 +6,7 @@ import { BackToCatalogLink } from "@/components/BackToCatalogLink/BackToCatalogL
 
 export default async function CartPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-6 lg:px-0">
+    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center justify-between px-6 pt-16 lg:px-0">
       <div className="w-full">
         <BackToCatalogLink />
         <div className="mb-8 lg:mb-12">

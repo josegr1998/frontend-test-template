@@ -3,7 +3,7 @@ import { Archivo } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Footer } from "@/components/Footer/Footer";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "@/components/Toast/Toast";
 
 const archivo = Archivo({
   subsets: ["latin"],

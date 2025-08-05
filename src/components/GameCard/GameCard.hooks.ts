@@ -1,8 +1,7 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
 import { Game } from "@/types/server/game";
-import { MESSAGE_ADDED_TO_CART } from "@/utils/toast";
-import { toastSuccess } from "@/utils/toast";
-import { MESSAGE_REMOVED_FROM_CART } from "@/utils/toast";
+import { MESSAGE_ADDED_TO_CART, MESSAGE_REMOVED_FROM_CART } from "@/consts";
+import { useToastStore } from "@/stores/toast/toastStore";
 
 type Props = {
   game: Game;
@@ -10,17 +9,26 @@ type Props = {
 
 export const useGameCard = ({ game }: Props) => {
   const { items, removeItem, addItem } = useCartStore();
+  const { showToast } = useToastStore();
 
   const isAddedToCart = items.some(({ id }) => id === game.id);
 
   const handleAddToCart = () => {
     addItem(game);
-    toastSuccess({ message: MESSAGE_ADDED_TO_CART });
+    showToast({
+      type: "success",
+      title: MESSAGE_ADDED_TO_CART,
+      message: game.name,
+    });
   };
 
   const handleRemoveFromCart = () => {
     removeItem(game.id);
-    toastSuccess({ message: MESSAGE_REMOVED_FROM_CART });
+    showToast({
+      type: "success",
+      title: MESSAGE_REMOVED_FROM_CART,
+      message: game.name,
+    });
   };
 
   return {
