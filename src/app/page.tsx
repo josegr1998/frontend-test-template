@@ -1,7 +1,5 @@
-import { ErrorBoundary } from "@/components/ErrorBoundary/ErrorBoundary";
-import { Homepage } from "@/components/Hoempage/Homepage";
-import { Loader } from "@/components/Loader/Loader";
-import { Suspense } from "react";
+import { GamesCatalog } from "@/components/GamesCatalog/GamesCatalog";
+import { getGamesCatalog } from "@/services/catalog";
 
 type Props = {
   searchParams: Promise<{
@@ -12,13 +10,13 @@ type Props = {
 export default async function Home({ searchParams }: Props) {
   const { genre = "All" } = await searchParams;
 
+  const initialCatalog = await getGamesCatalog({ genre, cache: "force-cache" });
+
   return (
     <main className="min-h-screen px-6 lg:px-32">
-      <ErrorBoundary>
-        <Suspense fallback={<Loader className="h-screen" />}>
-          <Homepage genre={genre} />
-        </Suspense>
-      </ErrorBoundary>
+      <div className="mx-auto w-full max-w-7xl">
+        <GamesCatalog initialCatalog={initialCatalog} />
+      </div>
     </main>
   );
 }

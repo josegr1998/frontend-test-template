@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Typography } from "@/components/Typography/Typography";
 import { CartItems } from "@/components/CartItems/CartItems";
 import { CartItemsNumber } from "@/components/CartItemsNumber/CartItemsNumber";

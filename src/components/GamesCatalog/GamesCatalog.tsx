@@ -1,29 +1,31 @@
 "use client";
 
-import { Filter } from "@/components/Filter/Filter";
 import { GamesList } from "@/components/GamesList/GamesList";
 import { Typography } from "@/components/Typography/Typography";
-import { ViewMore } from "@/components/ViewMore/ViewMore";
-import { useFilters } from "./GamesListingPage.hooks";
+import { useGamesCatalog } from "./GamesCatalog.hooks";
 import { Loader } from "../Loader/Loader";
 import { GameCatalog } from "@/types/server/catalog";
 import { Error } from "../Error/Error";
+import { GenreFilter } from "./components/GenreFilter";
+import { DEFAULT_SELECTED_GENRE } from "@/consts";
+import { Button } from "../Button/Button";
 
 type Props = {
   initialCatalog: GameCatalog;
 };
 
-export const GamesListingPage = ({ initialCatalog }: Props) => {
+export const GamesCatalog = ({ initialCatalog }: Props) => {
   const {
-    gamesCatalog,
+    filteredGamesCatalog,
     selectedGenre,
     isLoading,
     isLoadingNextPage,
     error,
+    isNextPageAvailable,
     handleViewMore,
     handleGenreChange,
     handleResetErrorBoundary,
-  } = useFilters({ initialCatalog });
+  } = useGamesCatalog({ initialCatalog });
 
   if (error) {
     return (
@@ -37,10 +39,12 @@ export const GamesListingPage = ({ initialCatalog }: Props) => {
         Top Sellers
       </Typography>
       <div className="flex md:justify-end">
-        <Filter
-          availableFilters={
-            gamesCatalog?.availableFilters || initialCatalog.availableFilters
-          }
+        <GenreFilter
+          //TODO: Return this from API
+          availableFilters={[
+            DEFAULT_SELECTED_GENRE,
+            ...filteredGamesCatalog.availableFilters,
+          ]}
           className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
@@ -53,16 +57,21 @@ export const GamesListingPage = ({ initialCatalog }: Props) => {
       ) : (
         <div className="my-8 lg:my-12">
           <GamesList
-            games={gamesCatalog?.games || initialCatalog.games}
+            games={filteredGamesCatalog.games}
             isLoadingNextPage={isLoadingNextPage}
           />
         </div>
       )}
-      <ViewMore
-        totalPages={gamesCatalog?.totalPages || initialCatalog.totalPages}
-        currentPage={gamesCatalog?.currentPage || initialCatalog.currentPage}
-        onClick={handleViewMore}
-      />
+      {isNextPageAvailable ? (
+        <Button
+          variant="secondary"
+          className="mb-12 w-full md:w-auto"
+          type="button"
+          onClick={handleViewMore}
+        >
+          SEE MORE
+        </Button>
+      ) : null}
     </div>
   );
 };

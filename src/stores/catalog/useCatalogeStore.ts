@@ -6,6 +6,7 @@ type CatalogStore = {
   catalog: GameCatalog | null;
   isLoading: boolean;
   isLoadingNextPage: boolean;
+  isNextPageAvailable: boolean;
   error: Error | null;
   fetchGames: (genre: string) => Promise<void>;
   fetchNextPage: (genre: string) => Promise<void>;
@@ -17,6 +18,7 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
   currentPage: 1,
   isLoading: false,
   isLoadingNextPage: false,
+  isNextPageAvailable: false,
   error: null,
   fetchGames: async (genre: string) => {
     const newUrl = `/?genre=${genre}`;
@@ -25,7 +27,11 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
     try {
       const catalog = await getGamesCatalog({ genre, cache: "force-cache" });
       window.history.replaceState(null, "", newUrl);
-      set({ catalog });
+      const isNextPageAvailable = catalog.currentPage < catalog.totalPages;
+      set({
+        catalog,
+        isNextPageAvailable,
+      });
     } catch (err) {
       set({ error: err as Error });
     } finally {
@@ -45,11 +51,15 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
         cache: "force-cache",
         page: catalog.currentPage + 1,
       });
+      const isNextPageAvailable =
+        newCatalog.currentPage < newCatalog.totalPages;
+
       set({
         catalog: {
           ...newCatalog,
           games: [...catalog.games, ...newCatalog.games],
         },
+        isNextPageAvailable,
       });
     } catch (err) {
       set({ error: err as Error });
@@ -58,5 +68,12 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
     }
   },
 
-  setCatalog: (catalog) => set({ catalog }),
+  setCatalog: (catalog) => {
+    const isNextPageAvailable = catalog.currentPage < catalog.totalPages;
+
+    set({
+      catalog,
+      isNextPageAvailable,
+    });
+  },
 }));

@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { Button } from "../Button/Button";
 import { Typography } from "../Typography/Typography";
-import { useCartStore } from "@/stores/cart/useCartStore";
+import { useOrderSummary } from "./useOrderSummary";
+import { OrderItem } from "../OrderItem/OrderItem";
 
 export const OrderSummary = () => {
-  const { items, numberOfItems, totalPrice } = useCartStore();
+  const { orderItems, numberOfItems, totalPrice } = useOrderSummary();
 
   return (
     <>
@@ -19,14 +20,8 @@ export const OrderSummary = () => {
         </Typography>
 
         <div>
-          {items.map((item) => (
-            <div
-              className="flex justify-between gap-y-3 last:border-b last:border-[var(--color-primary-light)] last:pb-6"
-              key={item.id}
-            >
-              <Typography variant="lg-regular">{item.name}</Typography>
-              <Typography variant="lg-regular">${item.price}</Typography>
-            </div>
+          {orderItems.map((item) => (
+            <OrderItem key={item.name} item={item} />
           ))}
         </div>
 
@@ -35,7 +30,7 @@ export const OrderSummary = () => {
           <Typography variant="xl-bold">${totalPrice}</Typography>
         </div>
       </div>
-      {items.length ? (
+      {orderItems.length ? (
         <Link href="/checkout" className="mb-8">
           <Button className="w-full" variant="secondary">
             Checkout

@@ -3,32 +3,17 @@ import { Button } from "../Button/Button";
 import Image from "next/image";
 import React from "react";
 import { Typography } from "../Typography/Typography";
-import { useCartStore } from "@/stores/cart/useCartStore";
 import { NewBadge } from "../NewBadge/NewBadge";
-import {
-  MESSAGE_ADDED_TO_CART,
-  MESSAGE_REMOVED_FROM_CART,
-  toastSuccess,
-} from "@/utils/toast";
+import { useGameCard } from "./GameCard.hooks";
 
 type Props = {
   game: Game;
 };
 
 export const GameCard = ({ game }: Props) => {
-  const { items, removeItem, addItem } = useCartStore();
-
-  const isAddedToCart = items.some(({ id }) => id === game.id);
-
-  const handleAddToCart = () => {
-    addItem(game);
-    toastSuccess({ message: MESSAGE_ADDED_TO_CART });
-  };
-
-  const handleRemoveFromCart = () => {
-    removeItem(game.id);
-    toastSuccess({ message: MESSAGE_REMOVED_FROM_CART });
-  };
+  const { isAddedToCart, handleAddToCart, handleRemoveFromCart } = useGameCard({
+    game,
+  });
 
   return (
     <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 ">
@@ -42,7 +27,7 @@ export const GameCard = ({ game }: Props) => {
           sizes="100vw"
           className="h-60 w-full rounded-t-2xl object-cover"
         />
-        <NewBadge isNew={game.isNew} />
+        {game.isNew && <NewBadge />}
       </div>
 
       <Typography variant="ag-bold" as="h3" className="mt-5">

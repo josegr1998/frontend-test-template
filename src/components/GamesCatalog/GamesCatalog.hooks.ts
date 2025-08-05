@@ -8,7 +8,7 @@ type Props = {
   initialCatalog: GameCatalog;
 };
 
-export const useFilters = ({ initialCatalog }: Props) => {
+export const useGamesCatalog = ({ initialCatalog }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -16,8 +16,9 @@ export const useFilters = ({ initialCatalog }: Props) => {
 
   const {
     isLoading,
-    catalog,
+    catalog: filteredGamesCatalog,
     isLoadingNextPage,
+    isNextPageAvailable,
     error,
     fetchGames,
     fetchNextPage,
@@ -28,24 +29,19 @@ export const useFilters = ({ initialCatalog }: Props) => {
     setCatalog(initialCatalog);
   }, [initialCatalog, setCatalog]);
 
-  const handleViewMore = async () => {
-    fetchNextPage(selectedGenre);
-  };
+  const handleViewMore = async () => fetchNextPage(selectedGenre);
 
-  const handleGenreChange = async (genre: string) => {
-    fetchGames(genre);
-  };
+  const handleGenreChange = async (genre: string) => fetchGames(genre);
 
-  const handleResetErrorBoundary = () => {
-    router.refresh();
-  };
+  const handleResetErrorBoundary = () => router.refresh();
 
   return {
-    gamesCatalog: catalog,
+    filteredGamesCatalog: filteredGamesCatalog || initialCatalog,
     selectedGenre,
     isLoading,
     isLoadingNextPage,
     error,
+    isNextPageAvailable,
     handleViewMore,
     handleGenreChange,
     handleResetErrorBoundary,
