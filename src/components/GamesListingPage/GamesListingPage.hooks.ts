@@ -34,9 +34,6 @@ export const useFilters = ({ initialCatalog }: Props) => {
 
   const handleGenreChange = async (genre: string) => {
     fetchGames(genre);
-
-    const newUrl = `/?genre=${genre}`;
-    window.history.replaceState(null, "", newUrl);
   };
 
   const handleResetErrorBoundary = () => {
