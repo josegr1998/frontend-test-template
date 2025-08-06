@@ -23,7 +23,7 @@ export const GenreFilter = ({
       className,
     )}
   >
-    <Typography variant="xl-bold" className="">
+    <Typography variant="xl-bold" asChild>
       <span className="h-[22px] border-r border-[var(--color-primary-dark)] pr-6">
         Genre
       </span>

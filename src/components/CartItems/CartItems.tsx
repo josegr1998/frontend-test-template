@@ -10,7 +10,9 @@ export const CartItems = () => {
   if (!items.length) {
     return (
       <div className="flex h-full items-center justify-center">
-        <Typography variant="lg-bold">No items in your cart</Typography>
+        <Typography variant="lg-bold" asChild>
+          <p>No items in your cart</p>
+        </Typography>
       </div>
     );
   }

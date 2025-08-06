@@ -4,5 +4,9 @@ import { useCartStore } from "@/stores/cart/useCartStore";
 
 export const CartItemsNumber = () => {
   const { numberOfItems } = useCartStore();
-  return <Typography variant="xl-regular">{numberOfItems} Items</Typography>;
+  return (
+    <Typography variant="xl-regular" asChild>
+      <p>{numberOfItems} Items</p>
+    </Typography>
+  );
 };

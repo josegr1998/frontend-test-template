@@ -29,10 +29,17 @@ export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
-export const Button = ({ className, variant, size, ...props }: ButtonProps) => {
+export const Button = ({
+  className,
+  variant,
+  size,
+  type = "button",
+  ...props
+}: ButtonProps) => {
   return (
     <button
       className={cn(buttonVariants({ variant, size }), className)}
+      type={type}
       {...props}
     />
   );

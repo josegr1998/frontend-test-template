@@ -10,8 +10,8 @@ export default async function CartPage() {
       <div className="w-full">
         <BackToCatalogLink />
         <div className="mb-8 lg:mb-12">
-          <Typography variant="2xl-bold" className="mb-3">
-            Your Cart
+          <Typography variant="2xl-bold" className="mb-3" asChild>
+            <h1>Your Cart</h1>
           </Typography>
           <CartItemsNumber />
         </div>

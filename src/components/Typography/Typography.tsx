@@ -1,17 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/cn";
-import type { HTMLAttributes } from "react";
-import { createElement } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
+import { createElement, cloneElement, isValidElement } from "react";
 
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      h1: "text-4xl font-bold",
-      h2: "text-3xl font-semibold",
-      h3: "text-2xl font-semibold",
-      h4: "text-xl font-medium",
-      body: "text-base",
-      caption: "text-sm text-neutral-500",
       tag: "font-normal text-base tracking-[var(--letter-wide-04)] leading-4 text-[var(--color-primary-dark)]",
       "ag-regular":
         "text-base font-normal leading-5 text-[var(--color-primary-dark)]",
@@ -34,24 +28,43 @@ const typographyVariants = cva("", {
     },
   },
   defaultVariants: {
-    variant: "body",
+    variant: "ag-regular",
   },
 });
 
-export interface TypographyProps
-  extends HTMLAttributes<HTMLElement>,
-    VariantProps<typeof typographyVariants> {
-  as?: keyof JSX.IntrinsicElements;
-}
+export type Props = HTMLAttributes<HTMLElement> &
+  VariantProps<typeof typographyVariants> & {
+    as?: keyof JSX.IntrinsicElements;
+    asChild?: boolean;
+  };
 
 export const Typography = ({
   as: Tag = "p",
   className,
   variant,
+  asChild = false,
+  children,
   ...props
-}: TypographyProps) => {
-  return createElement(Tag, {
-    className: cn(typographyVariants({ variant }), className),
-    ...props,
-  });
+}: Props) => {
+  const classes = cn(typographyVariants({ variant }), className);
+
+  if (asChild && isValidElement(children)) {
+    const child = children as ReactElement;
+    const childClassName =
+      (child.props && (child.props as any).className) || undefined;
+
+    return cloneElement(child, {
+      className: cn(classes, childClassName),
+      ...props,
+    });
+  }
+
+  return createElement(
+    Tag,
+    {
+      className: classes,
+      ...props,
+    },
+    children,
+  );
 };

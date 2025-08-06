@@ -23,17 +23,21 @@ export const CartItem = ({ item, handleRemoveItem }: Props) => {
         </div>
         <div className="flex h-[156px] flex-col justify-between">
           <div>
-            <Typography variant="ag-bold" className="mb-3">
-              {item.genre}
+            <Typography variant="ag-bold" className="mb-3" asChild>
+              <h3>{item.genre}</h3>
             </Typography>
-            <Typography variant="xl-bold" className="mb-2">
-              {item.name}
+            <Typography variant="xl-bold" className="mb-2" asChild>
+              <h4>{item.name}</h4>
             </Typography>
-            <Typography variant="ag-regular">{item.description}</Typography>
+            <Typography variant="ag-regular" asChild>
+              <p>{item.description}</p>
+            </Typography>
           </div>
 
           <div className="flex justify-end">
-            <Typography variant="xl-bold">${item.price}</Typography>
+            <Typography variant="xl-bold" asChild>
+              <p>${item.price}</p>
+            </Typography>
           </div>
         </div>
 

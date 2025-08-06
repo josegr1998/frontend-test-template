@@ -35,8 +35,8 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <Typography variant="2xl-bold" as="h1" className="my-8 lg:my-12">
-        Top Sellers
+      <Typography variant="2xl-bold" className="my-8 lg:my-12" asChild>
+        <h1>Top Sellers</h1>
       </Typography>
       <div className="flex md:justify-end">
         <GenreFilter
@@ -66,8 +66,8 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
         <Button
           variant="secondary"
           className="mb-12 w-full md:w-auto"
-          type="button"
           onClick={handleViewMore}
+          aria-label="See more"
         >
           SEE MORE
         </Button>

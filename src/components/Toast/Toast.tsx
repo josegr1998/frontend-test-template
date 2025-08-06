@@ -2,6 +2,7 @@
 
 import { useToastStore } from "@/stores/toast/toastStore";
 import type { ToastItem } from "@/stores/toast/toastStore";
+import { Typography } from "../Typography/Typography";
 
 export const ToastContainer = () => {
   const { toasts, removeToast } = useToastStore();
@@ -42,11 +43,13 @@ const Toast = ({
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="text-sm font-semibold">{toast.title}</div>
+        <Typography variant="ag-bold" asChild>
+          <h3>{toast.title}</h3>
+        </Typography>
         {toast.message && (
-          <div className="text-sm text-[var(--color-primary-dark)]">
-            {toast.message}
-          </div>
+          <Typography variant="ag-regular" asChild>
+            <p>{toast.message}</p>
+          </Typography>
         )}
       </div>
 

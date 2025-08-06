@@ -30,23 +30,31 @@ export const GameCard = ({ game }: Props) => {
         {game.isNew && <NewBadge />}
       </div>
 
-      <Typography variant="ag-bold" as="h3" className="mt-5">
-        {game.genre.toUpperCase()}
+      <Typography variant="ag-bold" className="mt-5" asChild>
+        <h3>{game.genre.toUpperCase()}</h3>
       </Typography>
       <div className="mb-5 mt-3 flex items-center justify-between">
-        <Typography variant="lg-bold" as="p" className="truncate">
-          {game.name}
+        <Typography variant="lg-bold" className="truncate" asChild>
+          <p>{game.name}</p>
         </Typography>
-        <Typography variant="xl-bold" as="p">
-          ${game.price}
+        <Typography variant="xl-bold" asChild>
+          <p>${game.price}</p>
         </Typography>
       </div>
       {isAddedToCart ? (
-        <Button className="w-full" onClick={handleRemoveFromCart}>
+        <Button
+          className="w-full"
+          onClick={handleRemoveFromCart}
+          aria-label="Remove from cart"
+        >
           REMOVE FROM CART
         </Button>
       ) : (
-        <Button className="w-full" onClick={handleAddToCart}>
+        <Button
+          className="w-full"
+          onClick={handleAddToCart}
+          aria-label="Add to cart"
+        >
           ADD TO CART
         </Button>
       )}

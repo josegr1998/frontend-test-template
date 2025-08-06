@@ -8,6 +8,8 @@ export const BackToCatalogLink = () => (
     className="mb-8 flex items-center justify-start gap-x-4 py-4 lg:-mb-0 lg:py-6"
   >
     <Image src="arrow-left.svg" alt="Back to Catalog" width={12} height={12} />
-    <Typography variant="ag-medium">Back to Catalog</Typography>
+    <Typography variant="ag-medium" asChild>
+      <span>Back to Catalog</span>
+    </Typography>
   </Link>
 );
