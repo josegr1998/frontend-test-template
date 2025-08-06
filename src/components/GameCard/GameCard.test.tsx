@@ -42,7 +42,7 @@ describe("GameCard", () => {
     expect(screen.getByText("$59.99")).toBeInTheDocument();
     //@ts-ignore --TODO: Fix this
     expect(
-      screen.getByRole("button", { name: /add to cart/i }),
+      screen.getByTestId("add-to-cart-button"),
       //@ts-ignore --TODO: Fix this
     ).toBeInTheDocument();
   });
@@ -57,7 +57,7 @@ describe("GameCard", () => {
     render(<GameCard game={mockGame} />);
 
     expect(
-      screen.getByRole("button", { name: /remove from cart/i }),
+      screen.getByTestId("remove-from-cart-button"),
       //@ts-ignore --TODO: Fix this
     ).toBeInTheDocument();
   });
@@ -73,7 +73,7 @@ describe("GameCard", () => {
 
     render(<GameCard game={mockGame} />);
 
-    const button = screen.getByRole("button", { name: /add to cart/i });
+    const button = screen.getByTestId("add-to-cart-button");
     fireEvent.click(button);
 
     expect(addItem).toHaveBeenCalledWith(mockGame);
@@ -90,7 +90,7 @@ describe("GameCard", () => {
 
     render(<GameCard game={mockGame} />);
 
-    const button = screen.getByRole("button", { name: /remove from cart/i });
+    const button = screen.getByTestId("remove-from-cart-button");
     fireEvent.click(button);
 
     expect(removeItem).toHaveBeenCalledWith("1");

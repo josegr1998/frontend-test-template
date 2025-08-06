@@ -20,7 +20,7 @@ export const ToastContainer = () => {
   );
 };
 
-const Toast = ({
+export const Toast = ({
   toast,
   onClose,
 }: {

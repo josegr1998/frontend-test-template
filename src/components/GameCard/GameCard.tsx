@@ -46,6 +46,7 @@ export const GameCard = ({ game }: Props) => {
           className="w-full"
           onClick={handleRemoveFromCart}
           aria-label="Remove from cart"
+          data-testid="remove-from-cart-button"
         >
           REMOVE FROM CART
         </Button>
@@ -54,6 +55,7 @@ export const GameCard = ({ game }: Props) => {
           className="w-full"
           onClick={handleAddToCart}
           aria-label="Add to cart"
+          data-testid="add-to-cart-button"
         >
           ADD TO CART
         </Button>

@@ -14,8 +14,15 @@ export const OrderSummary = () => {
         <Typography variant="xl-bold" className="mb-3" asChild>
           <h2>Order Summary</h2>
         </Typography>
-        <Typography variant="lg-regular" className="mb-8" asChild>
-          <p>{numberOfItems} Items</p>
+        <Typography
+          variant="lg-regular"
+          className="mb-8"
+          asChild
+          data-testid="order-summary-items"
+        >
+          <p>
+            {numberOfItems} {numberOfItems === 1 ? "Item" : "Items"}
+          </p>
         </Typography>
 
         <div>
@@ -38,6 +45,7 @@ export const OrderSummary = () => {
           className="mb-8 w-full"
           variant="secondary"
           aria-label="Checkout"
+          data-testid="checkout-button"
         >
           Checkout
         </Button>

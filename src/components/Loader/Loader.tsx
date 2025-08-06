@@ -6,7 +6,10 @@ type Props = {
 
 export const Loader = ({ className }: Props) => {
   return (
-    <div className={cn("flex flex-col items-center justify-center", className)}>
+    <div
+      className={cn("flex flex-col items-center justify-center", className)}
+      data-testid="loader"
+    >
       <div role="status">
         <svg
           aria-hidden="true"

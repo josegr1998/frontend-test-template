@@ -13,6 +13,7 @@ type SelectProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
+  //TODO: Add test for placeholder
   placeholder?: string;
   className?: string;
 };
