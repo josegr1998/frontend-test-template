@@ -5,7 +5,6 @@ describe("Button component", () => {
   it("renders the button with default props", () => {
     render(<Button>Click me</Button>);
     const button = screen.getByRole("button", { name: /click me/i });
-    //@ts-ignore --TODO: Fix this
     expect(button).toBeInTheDocument();
   });
 

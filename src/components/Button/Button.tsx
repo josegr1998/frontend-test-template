@@ -2,7 +2,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/cn";
 import type { ButtonHTMLAttributes } from "react";
 
-//TODO: Check if this is correct, check variant size and color names
 const buttonVariants = cva(
   "inline-flex items-center justify-center border rounded-lg text-base leading-4 tracking-wide-05 text-center focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none font-bold",
   {
@@ -44,5 +43,3 @@ export const Button = ({
     />
   );
 };
-
-//TODO: Add correct buttons and typographyes.

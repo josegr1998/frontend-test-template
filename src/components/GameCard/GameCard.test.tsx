@@ -29,22 +29,14 @@ describe("GameCard", () => {
 
     render(<GameCard game={mockGame} />);
 
-    //@ts-ignore --TODO: Fix this
     expect(screen.getByRole("img")).toHaveAttribute(
       "src",
       expect.stringContaining("test-game.jpg"),
     );
-    //@ts-ignore --TODO: Fix this
     expect(screen.getByText("ACTION")).toBeInTheDocument();
-    //@ts-ignore --TODO: Fix this
     expect(screen.getByText("Test Game")).toBeInTheDocument();
-    //@ts-ignore --TODO: Fix this
     expect(screen.getByText("$59.99")).toBeInTheDocument();
-    //@ts-ignore --TODO: Fix this
-    expect(
-      screen.getByTestId("add-to-cart-button"),
-      //@ts-ignore --TODO: Fix this
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("add-to-cart-button")).toBeInTheDocument();
   });
 
   it("shows REMOVE FROM CART when game is in cart", () => {
@@ -56,10 +48,7 @@ describe("GameCard", () => {
 
     render(<GameCard game={mockGame} />);
 
-    expect(
-      screen.getByTestId("remove-from-cart-button"),
-      //@ts-ignore --TODO: Fix this
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("remove-from-cart-button")).toBeInTheDocument();
   });
 
   it("calls addItem when clicking ADD TO CART", () => {

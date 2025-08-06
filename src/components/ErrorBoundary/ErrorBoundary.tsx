@@ -15,10 +15,7 @@ export const ErrorBoundary = ({ children }: Props) => {
 
   const handleError = (error: Error) => setError(error);
 
-  const resetErrorBoundary = () => {
-    //TODO: Check if this is correct
-    router.refresh();
-  };
+  const resetErrorBoundary = () => router.refresh();
 
   return (
     <ReactErrorBoundary
