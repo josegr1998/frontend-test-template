@@ -3,7 +3,7 @@ import { MESSAGE_REMOVED_FROM_CART } from "@/consts";
 import { useToastStore } from "@/stores/toast/toastStore";
 
 export const useCartItems = () => {
-  const { items, removeItem } = useCartStore();
+  const { items, removeItem, isHydrated } = useCartStore();
   const { showToast } = useToastStore();
 
   const handleRemoveItem = (itemId: string) => {
@@ -15,5 +15,5 @@ export const useCartItems = () => {
     });
   };
 
-  return { items, handleRemoveItem };
+  return { items, handleRemoveItem, isHydrated };
 };

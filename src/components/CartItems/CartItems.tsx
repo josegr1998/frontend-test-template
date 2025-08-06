@@ -5,9 +5,9 @@ import { CartItem } from "../CartItem/CartItem";
 import { useCartItems } from "./CartItems.hooks";
 
 export const CartItems = () => {
-  const { items, handleRemoveItem } = useCartItems();
+  const { items, handleRemoveItem, isHydrated } = useCartItems();
 
-  if (!items.length) {
+  if (!items.length && isHydrated) {
     return (
       <div className="flex h-full items-center justify-center">
         <Typography variant="lg-bold" asChild>

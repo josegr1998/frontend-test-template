@@ -13,6 +13,7 @@ export const useCartStore = create<CartStore>()(
       items: [],
       numberOfItems: 0,
       totalPrice: 0,
+      isHydrated: false,
       addItem: (itemToAdd) => {
         const cartItems = get().items;
 
@@ -52,6 +53,11 @@ export const useCartStore = create<CartStore>()(
         numberOfItems: state.numberOfItems,
         totalPrice: state.totalPrice,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.isHydrated = true;
+        }
+      },
     },
   ),
 );

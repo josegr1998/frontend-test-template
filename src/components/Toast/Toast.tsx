@@ -8,7 +8,7 @@ export const ToastContainer = () => {
   const { toasts, removeToast } = useToastStore();
 
   return (
-    <div className="fixed right-4 top-4 z-[9999] flex flex-col items-end gap-3">
+    <div className="fixed right-4 top-20 z-[9999] flex flex-col items-end gap-3">
       {toasts.map((toast) => (
         <Toast
           key={toast.id}
