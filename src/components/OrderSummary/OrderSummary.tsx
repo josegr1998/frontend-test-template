@@ -14,13 +14,8 @@ export const OrderSummary = () => {
         <Typography variant="xl-bold" className="mb-3" asChild>
           <h2>Order Summary</h2>
         </Typography>
-        <Typography
-          variant="lg-regular"
-          className="mb-8"
-          asChild
-          data-testid="order-summary-items"
-        >
-          <p>{numberOfItemsLabel}</p>
+        <Typography variant="lg-regular" className="mb-8" asChild>
+          <p data-testid="order-summary-items">{numberOfItemsLabel}</p>
         </Typography>
 
         <div className="flex flex-col gap-y-3">

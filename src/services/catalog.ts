@@ -1,13 +1,12 @@
 "use server";
 
-import { GameCatalog } from "@/types/server/catalog";
-
-//TODO: Add error handling
+import { Cache } from "@/types/cache";
+import { GameCatalog } from "@/types/catalog";
 
 type Props = {
   page?: number;
   genre: string;
-  cache?: "no-store" | "force-cache" | "no-cache" | "only-if-cached";
+  cache?: Cache;
 };
 
 export const getGamesCatalog = async ({
@@ -15,11 +14,16 @@ export const getGamesCatalog = async ({
   genre,
   cache = "no-store",
 }: Props): Promise<GameCatalog> => {
-  const response = await fetch(
-    `${process.env.GAMES_API_URL}/api/games?page=${page}&genre=${genre}`,
-    { cache },
-  );
-  const data = await response.json();
+  try {
+    const response = await fetch(
+      `${process.env.GAMES_API_URL}/api/games?page=${page}&genre=${genre}`,
+      { cache },
+    );
+    const data = await response.json();
 
-  return data;
+    return data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };

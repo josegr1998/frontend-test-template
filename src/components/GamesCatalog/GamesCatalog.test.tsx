@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { GamesCatalog } from "./GamesCatalog";
-import { Game } from "@/types/server/game";
-import { GameCatalog } from "@/types/server/catalog";
+import { Game } from "@/types/game";
+import { GameCatalog } from "@/types/catalog";
 
 jest.mock("@/stores/cart/useCartStore", () => ({
   useCartStore: jest.fn(),

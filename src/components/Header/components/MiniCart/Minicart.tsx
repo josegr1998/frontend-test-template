@@ -10,7 +10,8 @@ import { useMinicart } from "./Minicart.hooks";
 import { Button } from "@/components/Button/Button";
 
 export const Minicart = () => {
-  const { items, numberOfItems, totalPrice, isHydrated } = useMinicart();
+  const { items, numberOfItems, totalPrice, isHydrated, isEmpty } =
+    useMinicart();
 
   return (
     <div className="group relative inline-block h-6">
@@ -23,19 +24,15 @@ export const Minicart = () => {
         </Link>
       </div>
 
-      <div
-        className={cn(
-          "absolute right-0 top-full z-50 w-72 min-w-[320px] -translate-y-1 transform-gpu opacity-0",
-          "pointer-events-none rounded-lg border border-[var(--color-primary-light)] bg-white px-4 pb-4 shadow-lg",
-          "transition-all duration-150 ease-in-out",
-          "lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 lg:group-hover:opacity-100",
-        )}
-      >
-        {items.length === 0 && isHydrated ? (
-          <Typography variant="ag-regular" asChild className="pt-4">
-            <p>Your cart is empty</p>
-          </Typography>
-        ) : (
+      {!isEmpty ? (
+        <div
+          className={cn(
+            "absolute right-0 top-full z-50 w-72 min-w-[320px] -translate-y-1 transform-gpu opacity-0",
+            "pointer-events-none rounded-lg border border-[var(--color-primary-light)] bg-white px-4 pb-4 shadow-lg",
+            "transition-all duration-150 ease-in-out",
+            "lg:group-hover:pointer-events-auto lg:group-hover:translate-y-0 lg:group-hover:opacity-100",
+          )}
+        >
           <>
             <div>
               {items.map((item) => (
@@ -82,8 +79,8 @@ export const Minicart = () => {
               </Link>
             </div>
           </>
-        )}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 };

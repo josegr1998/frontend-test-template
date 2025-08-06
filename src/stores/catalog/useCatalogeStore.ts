@@ -1,35 +1,26 @@
 import { getGamesCatalog } from "@/services/catalog";
-import { GameCatalog } from "@/types/server/catalog";
 import { create } from "zustand";
-
-type CatalogStore = {
-  catalog: GameCatalog | null;
-  isLoading: boolean;
-  isLoadingNextPage: boolean;
-  isNextPageAvailable: boolean;
-  error: Error | null;
-  fetchGames: (genre: string) => Promise<void>;
-  fetchNextPage: (genre: string) => Promise<void>;
-  setCatalog: (catalog: GameCatalog) => void;
-};
+import { CatalogStore } from "./useCatalogStore.types";
+import { updateUrl } from "./useCatalogStore.utils";
+import { Cache } from "@/types/cache";
 
 export const useCatalogStore = create<CatalogStore>((set, get) => ({
-  catalog: null,
+  gamesCatalog: null,
   currentPage: 1,
   isLoading: false,
   isLoadingNextPage: false,
   isNextPageAvailable: false,
   error: null,
-  fetchGames: async (genre: string) => {
-    const newUrl = `/?genre=${genre}`;
-
+  fetchGamesCatalog: async ({ genre, cache = "no-store" }) => {
     set({ isLoading: true, error: null });
     try {
-      const catalog = await getGamesCatalog({ genre, cache: "force-cache" });
-      window.history.replaceState(null, "", newUrl);
+      const catalog = await getGamesCatalog({ genre, cache });
       const isNextPageAvailable = catalog.currentPage < catalog.totalPages;
+
+      updateUrl({ newUrl: `?genre=${genre}` });
+
       set({
-        catalog,
+        gamesCatalog: catalog,
         isNextPageAvailable,
       });
     } catch (err) {
@@ -39,25 +30,26 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
     }
   },
 
-  fetchNextPage: async (genre: string) => {
+  fetchNextCatalogPage: async ({ genre, cache = "no-store" }) => {
     set({ isLoadingNextPage: true, error: null });
-    const { catalog } = get();
+    const { gamesCatalog } = get();
 
-    if (!catalog) return;
+    if (!gamesCatalog) return;
 
     try {
-      const newCatalog = await getGamesCatalog({
+      const nextCatalogPage = await getGamesCatalog({
         genre,
-        cache: "force-cache",
-        page: catalog.currentPage + 1,
+        cache,
+        page: gamesCatalog.currentPage + 1,
       });
+
       const isNextPageAvailable =
-        newCatalog.currentPage < newCatalog.totalPages;
+        nextCatalogPage.currentPage < nextCatalogPage.totalPages;
 
       set({
-        catalog: {
-          ...newCatalog,
-          games: [...catalog.games, ...newCatalog.games],
+        gamesCatalog: {
+          ...nextCatalogPage,
+          games: [...gamesCatalog.games, ...nextCatalogPage.games],
         },
         isNextPageAvailable,
       });
@@ -68,11 +60,12 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
     }
   },
 
-  setCatalog: (catalog) => {
-    const isNextPageAvailable = catalog.currentPage < catalog.totalPages;
+  setGamesCatalog: (gamesCatalog) => {
+    const isNextPageAvailable =
+      gamesCatalog.currentPage < gamesCatalog.totalPages;
 
     set({
-      catalog,
+      gamesCatalog,
       isNextPageAvailable,
     });
   },

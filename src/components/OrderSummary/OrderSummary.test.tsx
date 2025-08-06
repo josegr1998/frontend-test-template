@@ -16,7 +16,7 @@ describe("OrderSummary", () => {
         { name: "Game 1", price: 59.99 },
         { name: "Game 2", price: 49.99 },
       ],
-      numberOfItems: 2,
+      numberOfItemsLabel: "2 Items",
       totalPrice: 109.98,
     });
 
@@ -39,7 +39,7 @@ describe("OrderSummary", () => {
   it("does not render checkout button when there are no items", () => {
     mockUseOrderSummary.mockReturnValue({
       orderItems: [],
-      numberOfItems: 0,
+      numberOfItemsLabel: "0 Items",
       totalPrice: 0,
     });
 

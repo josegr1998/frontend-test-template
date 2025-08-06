@@ -9,5 +9,6 @@ export const useMinicart = () => {
     numberOfItems,
     totalPrice,
     isHydrated,
+    isEmpty: items.length === 0 && isHydrated,
   };
 };

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar/Navbar";
+import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import { ToastContainer } from "@/components/Toast/Toast";
 
@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={archivo.variable}>
         <ToastContainer />
-        <Navbar />
+        <Header />
         {children}
         <Footer />
       </body>

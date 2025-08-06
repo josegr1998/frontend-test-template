@@ -1,6 +1,6 @@
 import { useCatalogStore } from "@/stores/catalog/useCatalogeStore";
 import { ALL_GAMES_FILTER } from "@/consts";
-import { GameCatalog } from "@/types/server/catalog";
+import { GameCatalog } from "@/types/catalog";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
@@ -16,22 +16,24 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
 
   const {
     isLoading,
-    catalog: filteredGamesCatalog,
+    gamesCatalog: filteredGamesCatalog,
     isLoadingNextPage,
     isNextPageAvailable,
     error,
-    fetchGames,
-    fetchNextPage,
-    setCatalog,
+    fetchGamesCatalog,
+    fetchNextCatalogPage,
+    setGamesCatalog,
   } = useCatalogStore();
 
   useEffect(() => {
-    setCatalog(initialCatalog);
-  }, [initialCatalog, setCatalog]);
+    setGamesCatalog(initialCatalog);
+  }, [initialCatalog, setGamesCatalog]);
 
-  const handleViewMore = async () => fetchNextPage(selectedGenre);
+  const handleViewMore = async () =>
+    fetchNextCatalogPage({ genre: selectedGenre, cache: "force-cache" });
 
-  const handleGenreChange = async (genre: string) => fetchGames(genre);
+  const handleGenreChange = async (genre: string) =>
+    fetchGamesCatalog({ genre, cache: "force-cache" });
 
   const handleResetErrorBoundary = () => router.refresh();
 

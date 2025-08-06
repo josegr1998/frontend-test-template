@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { ToastContainer, Toast } from "./Toast";
-import { useToastStore } from "@/stores/toast/toastStore";
+import { useToastStore } from "@/stores/toast/useToastStore";
 
-jest.mock("@/stores/toast/toastStore");
+jest.mock("@/stores/toast/useToastStore");
 const mockUseToastStore = useToastStore as unknown as jest.Mock;
 
 describe("Toast", () => {

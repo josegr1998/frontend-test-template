@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { CartItems } from "./CartItems";
 import * as hooks from "./CartItems.hooks";
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 
 const mockGame: Game = {
   id: "1",

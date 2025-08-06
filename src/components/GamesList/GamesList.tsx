@@ -1,6 +1,6 @@
 "use client";
 
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import { GameCard } from "../GameCard/GameCard";
 import { Loader } from "../Loader/Loader";
 

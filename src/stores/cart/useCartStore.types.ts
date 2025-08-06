@@ -1,4 +1,4 @@
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 
 export type CartItem = Game & { quantity: number; dateAdded: number };
 

@@ -1,7 +1,7 @@
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import { CartItem } from "./useCartStore.types";
 
-export const cartUtils = (cartItems: CartItem[]) => {
+const cartMappers = (cartItems: CartItem[]) => {
   const addItem = (itemToAdd: Game) => [
     ...cartItems,
     { ...itemToAdd, quantity: 1, dateAdded: Date.now() },
@@ -23,6 +23,32 @@ export const cartUtils = (cartItems: CartItem[]) => {
     removeItem,
   };
 };
+
+export const mapCartItemsOnAdd = ({
+  cartItems,
+  itemToAdd,
+}: {
+  cartItems: CartItem[];
+  itemToAdd: Game;
+}) => {
+  const isItemInCart = cartItems.some(({ id }) => id === itemToAdd.id);
+
+  const { updateItemQuantity, addItem } = cartMappers(cartItems);
+
+  const mappedItems = isItemInCart
+    ? updateItemQuantity(itemToAdd)
+    : addItem(itemToAdd);
+
+  return mappedItems;
+};
+
+export const mapCartItemsOnRemove = ({
+  cartItems,
+  itemId,
+}: {
+  cartItems: CartItem[];
+  itemId: string;
+}) => cartItems.filter(({ id }) => id !== itemId);
 
 export const calculateNumberOfItems = (cartItems: CartItem[]) =>
   cartItems.reduce((acc, { quantity }) => acc + quantity, 0);

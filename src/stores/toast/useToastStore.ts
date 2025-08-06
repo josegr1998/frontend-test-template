@@ -1,22 +1,7 @@
 import { create } from "zustand";
-
-export type ToastType = "success" | "error" | "info";
+import { ToastStore } from "./useToastStore.types";
 
 const TOAST_DEFAULT_DURATION = 2000;
-
-export type ToastItem = {
-  id: string;
-  type: ToastType;
-  title: string;
-  message?: string;
-  duration?: number;
-};
-
-type ToastStore = {
-  toasts: ToastItem[];
-  showToast: (toast: Omit<ToastItem, "id">) => void;
-  removeToast: (id: string) => void;
-};
 
 export const useToastStore = create<ToastStore>((set) => ({
   toasts: [],

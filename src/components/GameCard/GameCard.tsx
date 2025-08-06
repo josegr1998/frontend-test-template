@@ -1,4 +1,4 @@
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import { Button } from "../Button/Button";
 import Image from "next/image";
 import React from "react";
@@ -17,15 +17,13 @@ export const GameCard = ({ game }: Props) => {
 
   return (
     <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-primary)] hover:shadow-lg">
-      {/* TODO: Check if this is correct, check size of the button */}
-      <div className="relative">
+      <div className="relative h-60 w-full">
         <Image
           src={game.image}
           alt={game.name}
-          width={0}
-          height={0}
           sizes="100vw"
-          className="h-60 w-full rounded-t-2xl object-cover"
+          fill
+          className="rounded-t-2xl object-cover"
         />
         {game.isNew && <NewBadge />}
       </div>

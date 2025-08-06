@@ -4,7 +4,8 @@ import { CartStore } from "./useCartStore.types";
 import {
   calculateNumberOfItems,
   calculateTotalPrice,
-  cartUtils,
+  mapCartItemsOnAdd,
+  mapCartItemsOnRemove,
 } from "./useCartStore.utils";
 
 export const useCartStore = create<CartStore>()(
@@ -17,13 +18,7 @@ export const useCartStore = create<CartStore>()(
       addItem: (itemToAdd) => {
         const cartItems = get().items;
 
-        const isItemInCart = cartItems.some(({ id }) => id === itemToAdd.id);
-
-        const { addItem, updateItemQuantity } = cartUtils(cartItems);
-
-        const newItems = isItemInCart
-          ? updateItemQuantity(itemToAdd)
-          : addItem(itemToAdd);
+        const newItems = mapCartItemsOnAdd({ cartItems, itemToAdd });
 
         set({
           items: newItems,
@@ -34,9 +29,7 @@ export const useCartStore = create<CartStore>()(
       removeItem: (itemId) => {
         const cartItems = get().items;
 
-        const { removeItem } = cartUtils(cartItems);
-
-        const newItems = removeItem(itemId);
+        const newItems = mapCartItemsOnRemove({ cartItems, itemId });
 
         set({
           items: newItems,

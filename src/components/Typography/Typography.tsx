@@ -38,7 +38,6 @@ export type Props = HTMLAttributes<HTMLElement> &
     asChild?: boolean;
   };
 
-//TODO: Improve this logic
 export const Typography = ({
   as: Tag = "p",
   className,
@@ -50,12 +49,8 @@ export const Typography = ({
   const classes = cn(typographyVariants({ variant }), className);
 
   if (asChild && isValidElement(children)) {
-    const child = children as ReactElement;
-    const childClassName =
-      (child.props && (child.props as any).className) || undefined;
-
-    return cloneElement(child, {
-      className: cn(classes, childClassName),
+    return cloneElement(children as ReactElement, {
+      className: cn(classes, (children as ReactElement).props?.className),
       ...props,
     });
   }

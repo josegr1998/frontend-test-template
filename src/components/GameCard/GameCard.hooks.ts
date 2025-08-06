@@ -1,7 +1,7 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import { MESSAGE_ADDED_TO_CART, MESSAGE_REMOVED_FROM_CART } from "@/consts";
-import { useToastStore } from "@/stores/toast/toastStore";
+import { useToastStore } from "@/stores/toast/useToastStore";
 
 type Props = {
   game: Game;

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { CartItem } from "./CartItem";
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 
 const mockGame: Game = {
   id: "1",

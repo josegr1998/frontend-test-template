@@ -4,7 +4,7 @@ import { GamesList } from "@/components/GamesList/GamesList";
 import { Typography } from "@/components/Typography/Typography";
 import { useGamesCatalog } from "./GamesCatalog.hooks";
 import { Loader } from "../Loader/Loader";
-import { GameCatalog } from "@/types/server/catalog";
+import { GameCatalog } from "@/types/catalog";
 import { Error } from "../Error/Error";
 import { GenreFilter } from "./components/GenreFilter";
 import { Button } from "../Button/Button";

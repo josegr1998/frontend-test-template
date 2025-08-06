@@ -1,7 +1,7 @@
 "use client";
 
-import { useToastStore } from "@/stores/toast/toastStore";
-import type { ToastItem } from "@/stores/toast/toastStore";
+import { useToastStore } from "@/stores/toast/useToastStore";
+import type { ToastItem } from "@/stores/toast/useToastStore.types";
 import { Typography } from "../Typography/Typography";
 
 export const ToastContainer = () => {

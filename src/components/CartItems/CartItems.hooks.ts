@@ -1,6 +1,6 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
 import { MESSAGE_REMOVED_FROM_CART } from "@/consts";
-import { useToastStore } from "@/stores/toast/toastStore";
+import { useToastStore } from "@/stores/toast/useToastStore";
 import { sortCartItems } from "@/utils/cart";
 
 export const useCartItems = () => {

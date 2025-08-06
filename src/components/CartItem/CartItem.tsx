@@ -1,4 +1,4 @@
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import Image from "next/image";
 import { NewBadge } from "../NewBadge/NewBadge";
 import { Typography } from "../Typography/Typography";
@@ -41,14 +41,14 @@ export const CartItem = ({ item, handleRemoveItem }: Props) => {
           </div>
         </div>
 
-        <Image
-          src="delete-icon.svg"
-          alt="Delete Item"
-          width={12}
-          height={12}
-          className="absolute right-0 top-0 cursor-pointer"
+        <button
+          type="button"
           onClick={() => handleRemoveItem(item.id)}
-        />
+          aria-label="Remove item"
+          className="absolute right-0 top-0 size-3 cursor-pointer"
+        >
+          <Image src="delete-icon.svg" alt="Delete Item" fill />
+        </button>
       </div>
     </div>
   );

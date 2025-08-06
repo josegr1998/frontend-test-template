@@ -3,6 +3,7 @@ import { CartItems } from "@/components/CartItems/CartItems";
 import { CartItemsNumber } from "@/components/CartItemsNumber/CartItemsNumber";
 import { OrderSummary } from "@/components/OrderSummary/OrderSummary";
 import { NavigateBackButton } from "@/components/NavigateBackButton/NavigateBackButton";
+import { Container } from "@/components/Container/Container";
 
 export const metadata = {
   title: "GamerShop - Cart",
@@ -12,7 +13,7 @@ export const metadata = {
 export default async function CartPage() {
   return (
     <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-between px-6 pt-16 lg:px-32">
-      <div className="w-full max-w-7xl">
+      <Container>
         <NavigateBackButton label="Back to Catalog" />
 
         <div className="mb-8 xl:mb-12">
@@ -31,7 +32,7 @@ export default async function CartPage() {
             <OrderSummary />
           </div>
         </div>
-      </div>
+      </Container>
     </main>
   );
 }

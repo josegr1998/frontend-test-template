@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Game } from "@/types/server/game";
+import { Game } from "@/types/game";
 import { GameCard } from "@/components/GameCard/GameCard";
 
 jest.mock("@/stores/cart/useCartStore", () => ({

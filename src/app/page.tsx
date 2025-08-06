@@ -1,3 +1,4 @@
+import { Container } from "@/components/Container/Container";
 import { GamesCatalog } from "@/components/GamesCatalog/GamesCatalog";
 import { getGamesCatalog } from "@/services/catalog";
 
@@ -19,9 +20,9 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <main className="min-h-screen px-6 pt-16 lg:px-32">
-      <div className="mx-auto w-full max-w-7xl">
+      <Container className="mx-auto ">
         <GamesCatalog initialCatalog={initialCatalog} />
-      </div>
+      </Container>
     </main>
   );
 }
