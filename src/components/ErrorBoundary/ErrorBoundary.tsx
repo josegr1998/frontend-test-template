@@ -24,7 +24,10 @@ export const ErrorBoundary = ({ children }: Props) => {
     <ReactErrorBoundary
       onError={handleError}
       fallbackRender={() => (
-        <div className="flex h-screen flex-col items-center justify-center">
+        <div
+          className="flex h-screen flex-col items-center justify-center"
+          data-testid="error-boundary"
+        >
           <Error error={error} resetErrorBoundary={resetErrorBoundary} />
         </div>
       )}

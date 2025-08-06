@@ -19,7 +19,11 @@ export function Error({ error, resetErrorBoundary }: FallbackProps) {
       <Typography variant="ag-regular" className="mb-5 text-red-600" asChild>
         <p>{error?.message}</p>
       </Typography>
-      <Button onClick={resetErrorBoundary} aria-label="Try Again">
+      <Button
+        onClick={resetErrorBoundary}
+        aria-label="Try Again"
+        data-testid="try-again-button"
+      >
         Try Again
       </Button>
     </div>
