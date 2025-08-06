@@ -64,7 +64,7 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
       )}
       {isNextPageAvailable ? (
         <Button
-          variant="secondary"
+          variant="filled"
           className="mb-12 w-full md:w-auto"
           onClick={handleViewMore}
           aria-label="See more"

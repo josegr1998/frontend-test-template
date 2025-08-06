@@ -11,8 +11,8 @@ type Props = {
 export const CartItem = ({ item, handleRemoveItem }: Props) => {
   return (
     <div className="border-b border-[var(--color-primary-light)] px-4 py-5 ">
-      <div className="relative items-stretch gap-x-6 lg:flex">
-        <div className="relative h-[156px] w-[256px] shrink-0">
+      <div className="relative mx-auto items-stretch gap-x-6 lg:flex">
+        <div className="relative mb-4 h-[156px] w-[256px] shrink-0 lg:mb-0">
           <Image
             src={item.image}
             alt={item.name}

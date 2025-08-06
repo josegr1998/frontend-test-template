@@ -7,6 +7,8 @@ export const CartItemsNumber = () => {
 
   if (numberOfItems === 0) return null;
 
+  //TODO: Mapp cart items number to plural or singular on hook
+
   return (
     <Typography variant="xl-regular" asChild>
       <p>

@@ -7,3 +7,8 @@ The detailed instructions and requirements for this test are defined in the [`CH
 Good luck!
 
 //TODO: Double check spaces between text in cards
+//Add METADATA
+//Add 404 and 500 pages
+//try and see if going back works with the query
+// add hover effects
+//Fix cards overflow on long titles

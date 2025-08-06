@@ -1,6 +1,7 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
 import { MESSAGE_REMOVED_FROM_CART } from "@/consts";
 import { useToastStore } from "@/stores/toast/toastStore";
+import { sortCartItems } from "@/utils/cart";
 
 export const useCartItems = () => {
   const { items, removeItem, isHydrated } = useCartStore();
@@ -15,5 +16,5 @@ export const useCartItems = () => {
     });
   };
 
-  return { items, handleRemoveItem, isHydrated };
+  return { items: sortCartItems(items), handleRemoveItem, isHydrated };
 };

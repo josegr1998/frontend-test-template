@@ -4,13 +4,13 @@ import { CartItem } from "./useCartStore.types";
 export const cartUtils = (cartItems: CartItem[]) => {
   const addItem = (itemToAdd: Game) => [
     ...cartItems,
-    { ...itemToAdd, quantity: 1 },
+    { ...itemToAdd, quantity: 1, dateAdded: Date.now() },
   ];
 
   const updateItemQuantity = (itemToAdd: Game) =>
     cartItems.map((item) =>
       item.id === itemToAdd.id
-        ? { ...item, quantity: item.quantity + 1 }
+        ? { ...item, quantity: item.quantity + 1, dateAdded: Date.now() }
         : item,
     );
 

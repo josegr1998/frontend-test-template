@@ -7,6 +7,11 @@ type Props = {
   }>;
 };
 
+export const metadata = {
+  title: "GamerShop - Top Sellers",
+  description: "Browse and buy the most popular games from our catalog",
+};
+
 export default async function Home({ searchParams }: Props) {
   const { genre = "All" } = await searchParams;
 

@@ -25,7 +25,7 @@ export const OrderSummary = () => {
           </p>
         </Typography>
 
-        <div>
+        <div className="flex flex-col gap-y-3">
           {orderItems.map((item) => (
             <OrderItem key={item.name} item={item} />
           ))}
@@ -43,7 +43,7 @@ export const OrderSummary = () => {
       {orderItems.length ? (
         <Button
           className="mb-8 w-full"
-          variant="secondary"
+          variant="filled"
           aria-label="Checkout"
           data-testid="checkout-button"
         >

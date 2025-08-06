@@ -14,6 +14,9 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   title: "Apply Digital Test",
   description: "Frontend development test for Apply Digital",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

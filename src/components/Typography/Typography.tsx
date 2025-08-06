@@ -38,6 +38,7 @@ export type Props = HTMLAttributes<HTMLElement> &
     asChild?: boolean;
   };
 
+//TODO: Improve this logic
 export const Typography = ({
   as: Tag = "p",
   className,

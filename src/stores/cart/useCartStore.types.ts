@@ -1,6 +1,6 @@
 import { Game } from "@/types/server/game";
 
-export type CartItem = Game & { quantity: number };
+export type CartItem = Game & { quantity: number; dateAdded: number };
 
 export type CartStore = {
   items: CartItem[];

@@ -33,9 +33,9 @@ export const GameCard = ({ game }: Props) => {
       <Typography variant="ag-bold" className="mt-5" asChild>
         <h3>{game.genre.toUpperCase()}</h3>
       </Typography>
-      <div className="mb-5 mt-3 flex items-center justify-between">
+      <div className="mb-5 mt-3 flex items-center justify-between gap-x-2">
         <Typography variant="lg-bold" className="truncate" asChild>
-          <p>{game.name}</p>
+          <p title={game.name}>{game.name}</p>
         </Typography>
         <Typography variant="xl-bold" asChild>
           <p>${game.price}</p>
