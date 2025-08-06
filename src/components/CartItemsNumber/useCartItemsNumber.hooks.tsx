@@ -1,17 +1,13 @@
 import { useCartStore } from "@/stores/cart/useCartStore";
 import { getNumberOfItemsLabel } from "@/utils/cart";
 
-export const useOrderSummary = () => {
-  const { items, totalPrice, numberOfItems } = useCartStore();
+export const useCartItemsNumber = () => {
+  const { numberOfItems } = useCartStore();
 
   const numberOfItemsLabel = getNumberOfItemsLabel(numberOfItems);
 
   return {
-    orderItems: items.map((item) => ({
-      name: item.name,
-      price: item.price,
-    })),
-    totalPrice,
     numberOfItemsLabel,
+    numberOfItems,
   };
 };

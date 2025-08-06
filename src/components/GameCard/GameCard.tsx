@@ -16,7 +16,7 @@ export const GameCard = ({ game }: Props) => {
   });
 
   return (
-    <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 ">
+    <div className="rounded-2xl border-[0.5px] border-[var(--color-primary-light)] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-primary)] hover:shadow-lg">
       {/* TODO: Check if this is correct, check size of the button */}
       <div className="relative">
         <Image
@@ -29,7 +29,6 @@ export const GameCard = ({ game }: Props) => {
         />
         {game.isNew && <NewBadge />}
       </div>
-
       <Typography variant="ag-bold" className="mt-5" asChild>
         <h3>{game.genre.toUpperCase()}</h3>
       </Typography>

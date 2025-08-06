@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Typography } from "@/components/Typography/Typography";
 import { cn } from "@/utils/cn";
 import { useMinicart } from "./Minicart.hooks";
+import { Button } from "@/components/Button/Button";
 
 export const Minicart = () => {
   const { items, numberOfItems, totalPrice, isHydrated } = useMinicart();
@@ -74,11 +75,10 @@ export const Minicart = () => {
                 </Typography>
               </div>
 
-              <Link
-                href="/cart"
-                className="block w-full rounded-md bg-[var(--color-primary)] py-2 text-center text-white"
-              >
-                View all ({numberOfItems})
+              <Link href="/cart">
+                <Button variant="filled" size="sm" className="w-full">
+                  View all ({numberOfItems})
+                </Button>
               </Link>
             </div>
           </>

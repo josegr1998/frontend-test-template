@@ -1,19 +1,15 @@
 "use client";
 import { Typography } from "../Typography/Typography";
-import { useCartStore } from "@/stores/cart/useCartStore";
+import { useCartItemsNumber } from "./useCartItemsNumber.hooks";
 
 export const CartItemsNumber = () => {
-  const { numberOfItems } = useCartStore();
+  const { numberOfItemsLabel, numberOfItems } = useCartItemsNumber();
 
   if (numberOfItems === 0) return null;
 
-  //TODO: Mapp cart items number to plural or singular on hook
-
   return (
     <Typography variant="xl-regular" asChild>
-      <p>
-        {numberOfItems} {numberOfItems === 1 ? "Item" : "Items"}
-      </p>
+      <p>{numberOfItemsLabel}</p>
     </Typography>
   );
 };

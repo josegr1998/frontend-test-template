@@ -1,5 +1,5 @@
 import { useCatalogStore } from "@/stores/catalog/useCatalogeStore";
-import { DEFAULT_SELECTED_GENRE } from "@/consts";
+import { ALL_GAMES_FILTER } from "@/consts";
 import { GameCatalog } from "@/types/server/catalog";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const selectedGenre = searchParams.get("genre") || DEFAULT_SELECTED_GENRE;
+  const selectedGenre = searchParams.get("genre") || ALL_GAMES_FILTER;
 
   const {
     isLoading,

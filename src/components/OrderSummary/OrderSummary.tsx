@@ -6,7 +6,7 @@ import { useOrderSummary } from "./useOrderSummary";
 import { OrderItem } from "../OrderItem/OrderItem";
 
 export const OrderSummary = () => {
-  const { orderItems, numberOfItems, totalPrice } = useOrderSummary();
+  const { orderItems, totalPrice, numberOfItemsLabel } = useOrderSummary();
 
   return (
     <>
@@ -20,9 +20,7 @@ export const OrderSummary = () => {
           asChild
           data-testid="order-summary-items"
         >
-          <p>
-            {numberOfItems} {numberOfItems === 1 ? "Item" : "Items"}
-          </p>
+          <p>{numberOfItemsLabel}</p>
         </Typography>
 
         <div className="flex flex-col gap-y-3">

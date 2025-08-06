@@ -7,7 +7,6 @@ import { Loader } from "../Loader/Loader";
 import { GameCatalog } from "@/types/server/catalog";
 import { Error } from "../Error/Error";
 import { GenreFilter } from "./components/GenreFilter";
-import { DEFAULT_SELECTED_GENRE } from "@/consts";
 import { Button } from "../Button/Button";
 
 type Props = {
@@ -40,11 +39,7 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
       </Typography>
       <div className="flex md:justify-end">
         <GenreFilter
-          //TODO: Return this from API
-          availableFilters={[
-            DEFAULT_SELECTED_GENRE,
-            ...filteredGamesCatalog.availableFilters,
-          ]}
+          availableFilters={filteredGamesCatalog.availableFilters}
           className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
@@ -68,6 +63,7 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
           className="mb-12 w-full md:w-auto"
           onClick={handleViewMore}
           aria-label="See more"
+          disabled={isLoadingNextPage}
         >
           SEE MORE
         </Button>
