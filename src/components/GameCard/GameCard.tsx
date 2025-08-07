@@ -22,6 +22,7 @@ export const GameCard = ({ game }: Props) => {
           src={game.image}
           alt={game.name}
           sizes="100vw"
+          loading="lazy"
           fill
           className="rounded-t-2xl object-cover"
         />

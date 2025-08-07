@@ -10,7 +10,7 @@ type Props = {
 };
 
 export const GamesList = ({ games, isLoadingNextPage }: Props) => (
-  <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+  <div className="grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
     {games.map((game) => (
       <GameCard key={game.id} game={game} />
     ))}

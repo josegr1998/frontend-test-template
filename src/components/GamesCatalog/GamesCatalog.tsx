@@ -46,11 +46,11 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
         />
       </div>
       {isLoading ? (
-        <div className="flex min-h-[439px] w-[80rem] items-center justify-center">
+        <div className="flex min-h-[589px] w-full items-center justify-center">
           <Loader className="h-full" />
         </div>
       ) : (
-        <div className="my-8 lg:my-12">
+        <div className="py-8 lg:py-12">
           <GamesList
             games={filteredGamesCatalog.games}
             isLoadingNextPage={isLoadingNextPage}

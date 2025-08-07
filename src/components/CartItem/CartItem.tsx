@@ -10,7 +10,7 @@ type Props = {
 
 export const CartItem = ({ item, handleRemoveItem }: Props) => {
   return (
-    <div className="border-b border-[var(--color-primary-light)] px-4 py-5 ">
+    <div className="border-b border-[var(--color-primary-light)] px-4 py-5 last:border-b-0">
       <div className="relative mx-auto items-stretch gap-x-6 lg:flex">
         <div className="relative mb-4 h-[156px] w-[256px] shrink-0 lg:mb-0">
           <Image
@@ -45,7 +45,7 @@ export const CartItem = ({ item, handleRemoveItem }: Props) => {
           type="button"
           onClick={() => handleRemoveItem(item.id)}
           aria-label="Remove item"
-          className="absolute right-0 top-0 size-3 cursor-pointer"
+          className="absolute right-1.5 top-1.5 size-3 cursor-pointer"
         >
           <Image src="delete-icon.svg" alt="Delete Item" fill />
         </button>

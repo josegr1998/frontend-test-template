@@ -19,8 +19,8 @@ export default async function Home({ searchParams }: Props) {
   const initialCatalog = await getGamesCatalog({ genre, cache: "force-cache" });
 
   return (
-    <main className="min-h-screen px-6 pt-16 lg:px-32">
-      <Container className="mx-auto ">
+    <main className="min-h-[calc(100vh-172px)] px-6 pt-16 lg:px-32">
+      <Container className="mx-auto">
         <GamesCatalog initialCatalog={initialCatalog} />
       </Container>
     </main>

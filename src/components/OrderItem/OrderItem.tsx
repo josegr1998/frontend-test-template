@@ -9,7 +9,7 @@ type Props = {
 
 export const OrderItem = ({ item }: Props) => {
   return (
-    <div className="flex justify-between gap-y-3 last:border-b last:border-[var(--color-primary-light)] last:pb-6">
+    <div className="flex justify-between gap-x-2 gap-y-3 last:border-b last:border-[var(--color-primary-light)] last:pb-6">
       <Typography variant="lg-regular" asChild>
         <p>{item.name}</p>
       </Typography>

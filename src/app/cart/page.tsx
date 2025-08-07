@@ -12,7 +12,7 @@ export const metadata = {
 
 export default async function CartPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full flex-col items-center justify-between px-6 pt-16 lg:px-32">
+    <main className="mx-auto flex min-h-[calc(100vh-172px)] w-full flex-col items-center justify-between px-6 pt-16 lg:px-32">
       <Container>
         <NavigateBackButton label="Back to Catalog" />
 
@@ -23,7 +23,7 @@ export default async function CartPage() {
           <CartItemsNumber />
         </div>
 
-        <div className="gap-x-20 xl:flex">
+        <div className="mb-8 gap-x-20 xl:mb-12 xl:flex">
           <div className="mx-auto w-full xl:max-w-[678px]">
             <CartItems />
           </div>
