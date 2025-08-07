@@ -2,7 +2,6 @@ import { getGamesCatalog } from "@/services/catalog";
 import { create } from "zustand";
 import { CatalogStore } from "./useCatalogStore.types";
 import { updateUrl } from "./useCatalogStore.utils";
-import { Cache } from "@/types/cache";
 
 export const useCatalogStore = create<CatalogStore>((set, get) => ({
   gamesCatalog: null,

@@ -14,13 +14,9 @@ const cartMappers = (cartItems: CartItem[]) => {
         : item,
     );
 
-  const removeItem = (itemId: string) =>
-    cartItems.filter(({ id }) => id !== itemId);
-
   return {
     addItem,
     updateItemQuantity,
-    removeItem,
   };
 };
 
@@ -44,11 +40,11 @@ export const mapCartItemsOnAdd = ({
 
 export const mapCartItemsOnRemove = ({
   cartItems,
-  itemId,
+  itemToRemoveId,
 }: {
   cartItems: CartItem[];
-  itemId: string;
-}) => cartItems.filter(({ id }) => id !== itemId);
+  itemToRemoveId: string;
+}) => cartItems.filter(({ id }) => id !== itemToRemoveId);
 
 export const calculateNumberOfItems = (cartItems: CartItem[]) =>
   cartItems.reduce((acc, { quantity }) => acc + quantity, 0);
