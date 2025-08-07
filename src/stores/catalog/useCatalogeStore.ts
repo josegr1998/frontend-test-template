@@ -1,7 +1,6 @@
 import { getGamesCatalog } from "@/services/catalog";
 import { create } from "zustand";
 import { CatalogStore } from "./useCatalogStore.types";
-import { updateUrl } from "./useCatalogStore.utils";
 
 export const useCatalogStore = create<CatalogStore>((set, get) => ({
   gamesCatalog: null,
@@ -16,11 +15,10 @@ export const useCatalogStore = create<CatalogStore>((set, get) => ({
       const catalog = await getGamesCatalog({ genre, cache });
       const isNextPageAvailable = catalog.currentPage < catalog.totalPages;
 
-      updateUrl({ newUrl: `?genre=${genre}` });
-
       set({
         gamesCatalog: catalog,
         isNextPageAvailable,
+        error: null,
       });
     } catch (err) {
       set({ error: err as Error });

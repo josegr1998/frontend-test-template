@@ -32,10 +32,13 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
   const handleViewMore = async () =>
     fetchNextCatalogPage({ genre: selectedGenre, cache: "force-cache" });
 
-  const handleGenreChange = async (genre: string) =>
-    fetchGamesCatalog({ genre, cache: "force-cache" });
+  const handleGenreChange = async (genre: string) => {
+    await fetchGamesCatalog({ genre, cache: "force-cache" });
+    router.push(`?genre=${genre}`);
+  };
 
-  const handleResetErrorBoundary = () => router.refresh();
+  const handleResetErrorBoundary = () =>
+    fetchGamesCatalog({ genre: selectedGenre, cache: "no-store" });
 
   return {
     filteredGamesCatalog: filteredGamesCatalog || initialCatalog,

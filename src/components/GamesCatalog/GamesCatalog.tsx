@@ -28,7 +28,9 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
 
   if (error) {
     return (
-      <Error error={error} resetErrorBoundary={handleResetErrorBoundary} />
+      <div className="flex min-h-[calc(100vh-236px)] w-full items-center justify-center">
+        <Error error={error} resetErrorBoundary={handleResetErrorBoundary} />
+      </div>
     );
   }
 
@@ -40,9 +42,10 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
       <div className="flex md:justify-end">
         <GenreFilter
           availableFilters={filteredGamesCatalog.availableFilters}
-          className="mb-8 lg:mb-12"
           selectedGenre={selectedGenre}
           handleChange={handleGenreChange}
+          disabled={isLoading}
+          className="mb-8 lg:mb-12"
         />
       </div>
       {isLoading ? (
@@ -57,7 +60,7 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
           />
         </div>
       )}
-      {isNextPageAvailable ? (
+      {isNextPageAvailable && (
         <Button
           variant="filled"
           className="mb-12 w-full md:w-auto"
@@ -67,7 +70,7 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
         >
           SEE MORE
         </Button>
-      ) : null}
+      )}
     </div>
   );
 };

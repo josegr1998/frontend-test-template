@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/utils/cn";
 import React from "react";
 
 type Option = {
@@ -15,6 +16,7 @@ type SelectProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 };
 
 export const Select: React.FC<SelectProps> = ({
@@ -25,9 +27,10 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   placeholder = "Select an option",
   className = "",
+  disabled,
 }) => {
   return (
-    <div className={`flex flex-col gap-1 ${className}`}>
+    <div className={cn("flex flex-col gap-1", className)}>
       {label && (
         <label htmlFor={name} className="text-sm font-medium text-gray-700">
           {label}
@@ -38,7 +41,8 @@ export const Select: React.FC<SelectProps> = ({
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="text-xl focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="focus:border-primary-dark focus:ring-primary-dark text-xl focus:outline-none focus:ring-2"
+        disabled={disabled}
       >
         {placeholder && (
           <option value="" disabled hidden>

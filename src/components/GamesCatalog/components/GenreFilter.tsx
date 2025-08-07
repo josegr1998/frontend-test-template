@@ -9,6 +9,7 @@ type Props = {
   className?: string;
   selectedGenre: string;
   handleChange: (genre: string) => void;
+  disabled?: boolean;
 };
 
 export const GenreFilter = ({
@@ -16,6 +17,7 @@ export const GenreFilter = ({
   className,
   selectedGenre,
   handleChange,
+  disabled,
 }: Props) => (
   <div
     className={cn(
@@ -33,6 +35,7 @@ export const GenreFilter = ({
         label: filterName,
         value: filterName,
       }))}
+      disabled={disabled}
       value={selectedGenre}
       onChange={handleChange}
       placeholder="Select a genre"
