@@ -10,8 +10,8 @@ export const CartItems = () => {
   if (!items.length && isHydrated) {
     return (
       <div className="flex h-full items-center justify-center">
-        <Typography variant="lg-bold" asChild data-testid="empty-cart-message">
-          <p>No items in your cart</p>
+        <Typography variant="2xl-bold" asChild data-testid="empty-cart-message">
+          <p>No items added</p>
         </Typography>
       </div>
     );
