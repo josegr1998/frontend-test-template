@@ -29,7 +29,10 @@ export const useCartStore = create<CartStore>()(
       removeItem: (itemId) => {
         const cartItems = get().items;
 
-        const newItems = mapCartItemsOnRemove({ cartItems, itemId });
+        const newItems = mapCartItemsOnRemove({
+          cartItems,
+          itemToRemoveId: itemId,
+        });
 
         set({
           items: newItems,
