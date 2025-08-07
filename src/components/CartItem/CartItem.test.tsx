@@ -46,9 +46,9 @@ describe("CartItem", () => {
     const handleRemoveItem = jest.fn();
     render(<CartItem item={mockGame} handleRemoveItem={handleRemoveItem} />);
 
-    const deleteButton = screen.getByRole("img", { name: "Delete Item" });
+    const deleteButton = screen.getByTestId("remove-item-button");
     fireEvent.click(deleteButton);
 
-    expect(handleRemoveItem).toHaveBeenCalledWith("1");
+    expect(handleRemoveItem).toHaveBeenCalledWith(mockGame);
   });
 });

@@ -46,6 +46,7 @@ export const CartItem = ({ item, handleRemoveItem }: Props) => {
           onClick={() => handleRemoveItem(item)}
           aria-label="Remove item"
           className="absolute right-1.5 top-1.5 size-3 cursor-pointer"
+          data-testid="remove-item-button"
         >
           <Image src="delete-icon.svg" alt="Delete Item" fill />
         </button>
