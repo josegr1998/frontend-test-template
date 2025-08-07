@@ -2,6 +2,7 @@
 
 import { cn } from "@/utils/cn";
 import React from "react";
+import { Typography } from "../Typography/Typography";
 
 type Option = {
   label: string;
@@ -30,11 +31,16 @@ export const Select: React.FC<SelectProps> = ({
   disabled,
 }) => {
   return (
-    <div className={cn("flex flex-col gap-1", className)}>
+    <div className={cn(className)}>
       {label && (
-        <label htmlFor={name} className="text-sm font-medium text-gray-700">
-          {label}
-        </label>
+        <Typography variant="xl-bold" asChild>
+          <label
+            htmlFor={name}
+            className="h-[22px] border-r border-[var(--color-primary-dark)] pr-6"
+          >
+            {label}
+          </label>
+        </Typography>
       )}
       <select
         id={name}

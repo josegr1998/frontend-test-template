@@ -2,7 +2,7 @@ import { useCatalogStore } from "@/stores/catalog/useCatalogeStore";
 import { ALL_GAMES_FILTER } from "@/consts";
 import { GameCatalog } from "@/types/catalog";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type Props = {
   initialCatalog: GameCatalog;
@@ -11,10 +11,6 @@ type Props = {
 export const useGamesCatalog = ({ initialCatalog }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-
-  const [selectedGenre, setSelectedGenre] = useState(
-    searchParams.get("genre") || ALL_GAMES_FILTER,
-  );
 
   const {
     isLoading,
@@ -26,6 +22,10 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
     fetchNextCatalogPage,
     setGamesCatalog,
   } = useCatalogStore();
+
+  const [selectedGenre, setSelectedGenre] = useState(
+    searchParams.get("genre") || ALL_GAMES_FILTER,
+  );
 
   useEffect(() => {
     setGamesCatalog(initialCatalog);
@@ -43,8 +43,16 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
   const handleResetErrorBoundary = () =>
     fetchGamesCatalog({ genre: selectedGenre, cache: "no-store" });
 
+  const genreFilterOptions = useMemo(() => {
+    return initialCatalog?.availableFilters.map((filterName) => ({
+      label: filterName,
+      value: filterName,
+    }));
+  }, [initialCatalog]);
+
   return {
     filteredGamesCatalog: filteredGamesCatalog || initialCatalog,
+    genreFilterOptions,
     selectedGenre,
     isLoading,
     isLoadingNextPage,

@@ -6,8 +6,8 @@ import { useGamesCatalog } from "./GamesCatalog.hooks";
 import { Loader } from "../Loader/Loader";
 import { GameCatalog } from "@/types/catalog";
 import { Error } from "../Error/Error";
-import { GenreFilter } from "./components/GenreFilter";
 import { Button } from "../Button/Button";
+import { Select } from "../Select/Select";
 
 type Props = {
   initialCatalog: GameCatalog;
@@ -16,6 +16,7 @@ type Props = {
 export const GamesCatalog = ({ initialCatalog }: Props) => {
   const {
     filteredGamesCatalog,
+    genreFilterOptions,
     selectedGenre,
     isLoading,
     isLoadingNextPage,
@@ -40,12 +41,15 @@ export const GamesCatalog = ({ initialCatalog }: Props) => {
         <h1>Top Sellers</h1>
       </Typography>
       <div className="flex md:justify-end">
-        <GenreFilter
-          availableFilters={filteredGamesCatalog.availableFilters}
-          selectedGenre={selectedGenre}
-          handleChange={handleGenreChange}
+        <Select
+          label="Genre"
+          name="genre"
+          options={genreFilterOptions}
           disabled={isLoading}
-          className="mb-8 lg:mb-12"
+          value={selectedGenre}
+          onChange={handleGenreChange}
+          placeholder="Select a genre"
+          className="mb-8 flex w-full items-center justify-between gap-x-6 md:w-auto md:justify-end lg:mb-12"
         />
       </div>
       {isLoading ? (
