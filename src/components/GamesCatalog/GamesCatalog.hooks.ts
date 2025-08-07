@@ -34,7 +34,7 @@ export const useGamesCatalog = ({ initialCatalog }: Props) => {
 
   const handleGenreChange = async (genre: string) => {
     await fetchGamesCatalog({ genre, cache: "force-cache" });
-    router.push(`?genre=${genre}`);
+    router.replace(`?genre=${genre}`);
   };
 
   const handleResetErrorBoundary = () =>
