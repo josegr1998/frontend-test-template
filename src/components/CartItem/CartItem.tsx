@@ -5,7 +5,7 @@ import { Typography } from "../Typography/Typography";
 
 type Props = {
   item: Game;
-  handleRemoveItem: (id: string) => void;
+  handleRemoveItem: (item: Game) => void;
 };
 
 export const CartItem = ({ item, handleRemoveItem }: Props) => {
@@ -43,7 +43,7 @@ export const CartItem = ({ item, handleRemoveItem }: Props) => {
 
         <button
           type="button"
-          onClick={() => handleRemoveItem(item.id)}
+          onClick={() => handleRemoveItem(item)}
           aria-label="Remove item"
           className="absolute right-1.5 top-1.5 size-3 cursor-pointer"
         >

@@ -31,7 +31,7 @@ export const Toast = ({
     <div
       role="status"
       aria-live="polite"
-      className="animate-slide-in flex w-80 max-w-full gap-3 rounded-lg border border-[var(--color-primary-light)] bg-[var(--color-secondary)] p-4 text-[var(--color-primary-dark)] shadow-md"
+      className="animate-slide-in flex w-80 max-w-full items-center gap-3 rounded-lg border border-[var(--color-primary-light)] bg-[var(--color-secondary)] p-4 text-[var(--color-primary-dark)] shadow-md"
     >
       <div
         className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-md bg-[var(--color-primary-light)] text-[var(--color-secondary)]"
@@ -43,11 +43,11 @@ export const Toast = ({
       </div>
 
       <div className="min-w-0 flex-1">
-        <Typography variant="ag-bold" asChild>
+        <Typography variant="ag-bold" className="lg:mb-2" asChild>
           <h3>{toast.title}</h3>
         </Typography>
         {toast.message && (
-          <Typography variant="ag-regular" asChild>
+          <Typography variant="ag-regular" className="hidden lg:block" asChild>
             <p>{toast.message}</p>
           </Typography>
         )}
